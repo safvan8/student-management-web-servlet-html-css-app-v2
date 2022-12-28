@@ -2,36 +2,19 @@
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>StudentApp</title>
 </head>
 <body bgcolor='#FFFFE0'>
-	<h1>INSERT new Student details</h1>
-	<h2 style="color: crimson;">Fill details in below form</h2>
-	<style>
-label {
-	display: block;
-	text-align: left;
-}
-</style>
-
-	<form style="color: blue" action="./mainServlet"
-		method="POST">
-
-		<input type="hidden" name="operation" value="insert"> <label
-			for="name">Name of Student: </label> <input type="text" name="name"><br>
-
-		<label for="age">Age: </label> <input type="text" id="age" name="age"><br>
-
-		<label for="gender">Gender: </label> <select name=gender multiple>
-
-			<option value=m>Male</option>
-			<option value=f>Female</option>
-			<option value=o>Other</option>
-
-		</select> <br> <label for="mobileno">Mobile No:</label> <input type="text"
-			id="mobileno" name="mobileno"><br> <br> <input
-			type="submit" value="submit">
-
-	</form>
+	<h1 align="center" style="color: white; background-color: #006400">
+		STUDENT MANAGEMENT APPLICATION</h1>
+	<h2 align="center" style="color: brown">Welcome to ABC school !</h2>
+	<h3
+		style="color: Navy; font-family: Trebuchet MS; background-color: white;">
+		Kindly select required Operation from the below options
+	</h3>
+	<a href="http://localhost:9999/StudentManagement/insert.html">INSERT new student details<br></a> 
+	<a href="http://localhost:9999/StudentManagement/read.html">Read all student details<br></a> 
+	<a href="Update Link">Update existing student details<br></a> 
+	<a href="DELETE Link">Delete existing  student details</a> 
 </body>
 </html>

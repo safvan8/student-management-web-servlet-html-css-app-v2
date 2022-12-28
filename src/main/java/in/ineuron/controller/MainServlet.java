@@ -48,7 +48,7 @@ public class MainServlet extends HttpServlet
 	@Override
 	public void init()
 	{
-		System.out.println("Servlet initilization succes");
+		System.out.println("Servlet initilization success");
 	}
 
 	@Override
