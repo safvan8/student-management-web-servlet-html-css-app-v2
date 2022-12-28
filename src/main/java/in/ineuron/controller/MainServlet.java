@@ -11,11 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 
 import in.ineuron.model.AllQueryGenerator;
 import in.ineuron.model.MySqlJdbcUtil;
+import in.ineuron.view.DisplayVisuals;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import javax.servlet.annotation.WebInitParam;
+import javax.servlet.annotation.WebInitParam ;
 
 /**
  * Servlet implementation class MainServlet
@@ -26,13 +27,19 @@ import javax.servlet.annotation.WebInitParam;
 public class MainServlet extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;
+	
 	private Connection connection;
 
+	
 	private AllQueryGenerator allQueryGenerator = AllQueryGenerator.getAllQueryGenerator();
 
 	PreparedStatement preparedStatementForInsert;
-
-	private int insertRowCount;
+	
+	// Object of Class in View 
+	private Integer insertRowCount ;
+	
+	// 
+	private DisplayVisuals displayVisuals = DisplayVisuals.getDisplayVisualsObj();;
 
 	static
 	{
@@ -89,22 +96,11 @@ public class MainServlet extends HttpServlet
 				}
 
 			}
+			// to display response in the browser screen -- passing response and row count Obj
+			displayVisuals.showInsertOperationsResult(response, insertRowCount);
 		}
 
-		// to display response in the browser screen
-		response.setContentType("text/html");
-
-		PrintWriter out = response.getWriter();
-
-		out.println("<html> <body>");
-
-		// to get successfull/failed message
-		if (insertRowCount > 0)
-			out.println("<h1>" + "Student registartion Successfull" + "</h1>");
-		else
-			out.println("<h1>" + "Student registartion failed" + "</h1>");
-
-		out.println(" </body></html>");
+		
 
 	}
 
