@@ -10,7 +10,7 @@ public class AllQueryGenerator
 	private String name;
 	private Integer age;
 	private String gender;
-	private Integer mobileNo;
+	private String mobileNo;
 	private static AllQueryGenerator allQueryGenerator;
 
 	private AllQueryGenerator()
@@ -55,7 +55,7 @@ public class AllQueryGenerator
 			name = request.getParameter("name");
 			age = Integer.parseInt(request.getParameter("age"));
 			gender = request.getParameter("gender");
-			mobileNo = Integer.parseInt(request.getParameter("mobileno"));
+			mobileNo = request.getParameter("mobileno").trim();
 
 			// setting user input values into preparedStatement object
 			try
@@ -63,15 +63,15 @@ public class AllQueryGenerator
 				preparedStatement.setString(1, name);
 				preparedStatement.setInt(2, age);
 				preparedStatement.setString(3, gender);
-				preparedStatement.setInt(4, mobileNo);
-			}
-			catch (SQLException e)
+				preparedStatement.setString(4, mobileNo);
+			} catch (SQLException e)
 			{
 				e.printStackTrace();
 			} catch (Exception e)
 			{
 				e.printStackTrace();
 			}
+
 			// returning Object after setting values
 			return preparedStatement;
 		}

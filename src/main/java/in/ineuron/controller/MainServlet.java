@@ -1,4 +1,5 @@
 package in.ineuron.controller;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 
@@ -54,50 +55,50 @@ public class MainServlet extends HttpServlet
 	@Override
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException
 	{
-//		// finding which operation is requested by user from html file
-	String dbOperation = request.getParameter("operation");
-//
-		connection = MySqlJdbcUtil.getmySqlJdbcConnection();
-//
-//		if (dbOperation.equals("insert"))
-//		{
-//			// getting sql query based on the specified dbOperation
-//			String sqlQuery = allQueryGenerator.generateSqlQuery(dbOperation);
-//
-//			if (connection != null)
-//			{
-//				// getting preparedStatement for insert operation from Util class
-//				preparedStatementForInsert = MySqlJdbcUtil.getPreparedStatement(connection, sqlQuery);
-//				
-//				// setting user input values to the insert query
-//				allQueryGenerator.setUserInputValuesToPreparedStatement(request, dbOperation, preparedStatementForInsert);
-//				
-//			}
-//		}
-		
-		
 		// finding which operation is requested by user from html file
-			//	String dbOperation = request.getParameter("operation");
+		String dbOperation = request.getParameter("operation");
+
+		// getting JDBC connection from util class
+		connection = MySqlJdbcUtil.getmySqlJdbcConnection();
+
+		if (dbOperation.equals("insert"))
+	{
+			
+			// getting sql query based on the specified dbOperation
+			String sqlQuery = allQueryGenerator.generateSqlQuery(dbOperation);
+			
+			if (connection != null)
+			{
+				// getting preparedStatement for insert operation from Util class
+				preparedStatementForInsert = MySqlJdbcUtil.getPreparedStatement(connection, sqlQuery);
+			
+			// setting user input values to the insert query
+				preparedStatementForInsert= allQueryGenerator.setUserInputValuesToPreparedStatement(request, dbOperation, preparedStatementForInsert);
+				System.out.println(preparedStatementForInsert);				
 				
-				String name = request.getParameter("name");
-				//Integer age = Integer.parseInt(request.getParameter("age"));
-				String gender = request.getParameter("operation");
-				//Integer mobileNo = Integer.parseInt(request.getParameter("mobileno"));
-				
+		}
+		}
+
+		// finding which operation is requested by user from html file
+		// String dbOperation = request.getParameter("operation");
+
+		String name = request.getParameter("name");
+		// Integer age = Integer.parseInt(request.getParameter("age"));
+		String gender = request.getParameter("operation");
+		// Integer mobileNo = Integer.parseInt(request.getParameter("mobileno"));
+
 //				System.out.println(name);
 		//
-				
-				response.setContentType("text/html");
-				PrintWriter out = response.getWriter();
-				
-				out.println("<html> <body>");
-				
-				out.println("<h1>"+name+"</h1>");
-				out.println("<h1>"+connection+"</h1>");
-				out.println(" </body></html>");
-				
-		
-		
+
+		response.setContentType("text/html");
+		PrintWriter out = response.getWriter();
+
+		out.println("<html> <body>");
+
+		out.println("<h1>" + name + "</h1>");
+		out.println("<h1>" + preparedStatementForInsert + "</h1>");
+		out.println(" </body></html>");
+
 	}
 
 }

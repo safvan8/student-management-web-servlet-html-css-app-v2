@@ -41,6 +41,7 @@ public class MySqlJdbcUtil
 		try
 		{
 			preparedStatement = connection.prepareStatement(query);
+			System.out.println("preparedStatement created successfully");
 		} catch (SQLException e)
 		{
 			e.printStackTrace();
