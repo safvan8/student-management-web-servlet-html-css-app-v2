@@ -11,6 +11,8 @@ import in.ineuron.model.AllQueryGenerator;
 import in.ineuron.model.MySqlJdbcUtil;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
@@ -50,28 +52,52 @@ public class MainServlet extends HttpServlet
 	}
 
 	@Override
-	public void doPost(HttpServletRequest request, HttpServletResponse response)
+	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException
 	{
+//		// finding which operation is requested by user from html file
+//		String dbOperation = request.getParameter("operation");
+//
+//		connection = MySqlJdbcUtil.getmySqlJdbcConnection();
+//
+//		if (dbOperation.equals("insert"))
+//		{
+//			// getting sql query based on the specified dbOperation
+//			String sqlQuery = allQueryGenerator.generateSqlQuery(dbOperation);
+//
+//			if (connection != null)
+//			{
+//				// getting preparedStatement for insert operation from Util class
+//				preparedStatementForInsert = MySqlJdbcUtil.getPreparedStatement(connection, sqlQuery);
+//				
+//				// setting user input values to the insert query
+//				allQueryGenerator.setUserInputValuesToPreparedStatement(request, dbOperation, preparedStatementForInsert);
+//				
+//			}
+//		}
+		
+		
 		// finding which operation is requested by user from html file
-		String dbOperation = request.getParameter("operation");
-
-		connection = MySqlJdbcUtil.getmySqlJdbcConnection();
-
-		if (dbOperation.equals("insert"))
-		{
-			// getting sql query based on the specified dbOperation
-			String sqlQuery = allQueryGenerator.generateSqlQuery(dbOperation);
-
-			if (connection != null)
-			{
-				// getting preparedStatement for insert operation from Util class
-				preparedStatementForInsert = MySqlJdbcUtil.getPreparedStatement(connection, sqlQuery);
+				String dbOperation = request.getParameter("operation");
 				
-				// setting user input values to the insert query
-				allQueryGenerator.setUserInputValuesToPreparedStatement(request, dbOperation, preparedStatementForInsert);
+				String name = request.getParameter("name");
+				//Integer age = Integer.parseInt(request.getParameter("age"));
+				String gender = request.getParameter("operation");
+				//Integer mobileNo = Integer.parseInt(request.getParameter("mobileno"));
 				
-			}
-		}
+//				System.out.println(name);
+		//
+				
+				response.setContentType("text/html");
+				PrintWriter out = response.getWriter();
+				
+				out.println("<html> <body>");
+				
+				out.println("<h1>"+name+"</h1>");
+				out.println("<h1>"+dbOperation+"</h1>");
+				out.println(" </body></html>");
+				
+		
+		
 	}
 
 }
