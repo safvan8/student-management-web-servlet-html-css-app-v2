@@ -55,9 +55,9 @@ public class MainServlet extends HttpServlet
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException
 	{
 //		// finding which operation is requested by user from html file
-//		String dbOperation = request.getParameter("operation");
+	String dbOperation = request.getParameter("operation");
 //
-//		connection = MySqlJdbcUtil.getmySqlJdbcConnection();
+		connection = MySqlJdbcUtil.getmySqlJdbcConnection();
 //
 //		if (dbOperation.equals("insert"))
 //		{
@@ -77,7 +77,7 @@ public class MainServlet extends HttpServlet
 		
 		
 		// finding which operation is requested by user from html file
-				String dbOperation = request.getParameter("operation");
+			//	String dbOperation = request.getParameter("operation");
 				
 				String name = request.getParameter("name");
 				//Integer age = Integer.parseInt(request.getParameter("age"));
@@ -93,7 +93,7 @@ public class MainServlet extends HttpServlet
 				out.println("<html> <body>");
 				
 				out.println("<h1>"+name+"</h1>");
-				out.println("<h1>"+dbOperation+"</h1>");
+				out.println("<h1>"+connection+"</h1>");
 				out.println(" </body></html>");
 				
 		
