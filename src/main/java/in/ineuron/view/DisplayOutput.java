@@ -4,27 +4,27 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.http.HttpServletResponse;
 
-public class DisplayVisuals
+public class DisplayOutput
 {
-	private static DisplayVisuals displayVisuals ;
+	private static DisplayOutput displayOutput ;
 	
 	HttpServletResponse response = null;
 
-	private DisplayVisuals()
+	private DisplayOutput()
 	{
 		// restricting class Object creation outside class
 	}
 
-	public static DisplayVisuals getDisplayVisualsObj()
+	public static DisplayOutput getDisplayVisualsObj()
 	{
 		
-		if (displayVisuals == null)
+		if (displayOutput == null)
 		{
-			displayVisuals = new DisplayVisuals();
-			return displayVisuals;
+			displayOutput = new DisplayOutput();
+			return displayOutput;
 		}
 		else
-			return displayVisuals;
+			return displayOutput;
 		
 	}
 

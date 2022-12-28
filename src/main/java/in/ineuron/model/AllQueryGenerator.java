@@ -39,9 +39,15 @@ public class AllQueryGenerator
 			String insertQuery = "INSERT INTO schooldbo.student (name,age,gender,mobileno)  VALUES (?,?,?,?)";
 
 			return insertQuery;
-		} else
+		} else if (dbOperation.equals("read"))
+		{
+			// creating Select Query
+			String readQuery = "SELECT * FROM schooldbo.student";
+			
+			return readQuery;
+		}
 
-			return "";
+			return ""; //  for remaining features
 
 	}
 

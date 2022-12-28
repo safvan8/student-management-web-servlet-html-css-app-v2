@@ -2,15 +2,19 @@ package in.ineuron.controller;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
 import in.ineuron.model.AllQueryGenerator;
 import in.ineuron.model.MySqlJdbcUtil;
-import in.ineuron.view.DisplayVisuals;
+import in.ineuron.view.DisplayOutput;
 import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.annotation.WebInitParam;
 
 /**
@@ -27,13 +31,17 @@ public class MainServlet extends HttpServlet
 
 	private AllQueryGenerator allQueryGenerator = AllQueryGenerator.getAllQueryGenerator();
 
-	PreparedStatement preparedStatementForInsert;
+	private PreparedStatement preparedStatementForInsert;
+
+	private PreparedStatement preparedStatementForRead;
+
+	private ResultSet resultSet;
 
 	// Object of Class in View
 	private Integer insertRowCount;
 
 	//
-	private DisplayVisuals displayVisuals = DisplayVisuals.getDisplayVisualsObj();;
+	private DisplayOutput displayOutput = DisplayOutput.getDisplayVisualsObj();;
 
 	static
 	{
@@ -64,15 +72,24 @@ public class MainServlet extends HttpServlet
 		{
 			// getting sql query based on the specified dbOperation
 			String sqlQuery = allQueryGenerator.generateSqlQuery(dbOperation);
-			
+
 			// calling method Student details insertion to DB
-			runStudentInsertOperation(dbOperation, request, response,sqlQuery);
+			runStudentInsertOperation(dbOperation, request, response, sqlQuery);
+		} else if (dbOperation.equals("read"))
+		{
+			// getting sql query based on the specified dbOperation
+			String sqlQuery = allQueryGenerator.generateSqlQuery(dbOperation);
+
+			System.out.println(sqlQuery);
+
+			runStudentReadOperation(dbOperation, request, response, sqlQuery);
 		}
 
 	}
 
-	// for Student INSERTION to database 
-	public void runStudentInsertOperation(String dbOperation, HttpServletRequest request, HttpServletResponse response, String sqlQuery)
+	// for Student INSERTION to database
+	public void runStudentInsertOperation(String dbOperation, HttpServletRequest request, HttpServletResponse response,
+			String sqlQuery)
 	{
 		if (connection != null)
 		{
@@ -82,7 +99,7 @@ public class MainServlet extends HttpServlet
 			// setting user input values to the insert query
 			preparedStatementForInsert = allQueryGenerator.setUserInputValuesToPreparedStatement(request, dbOperation,
 					preparedStatementForInsert);
-			System.out.println("insert query values set successfull");
+			System.out.println("insert query values to PreparedStatement successfull");
 
 			insertRowCount = 0;
 			if (preparedStatementForInsert != null)
@@ -99,12 +116,50 @@ public class MainServlet extends HttpServlet
 		}
 		try
 		{
-			// to display response in the browser screen -- passing response and row count
-			// object
-			displayVisuals.showInsertOperationsResult(response, insertRowCount);
+			// to display response in the browser screen -- passing response and row count object
+			displayOutput.showInsertOperationsResult(response, insertRowCount);
 		} catch (IOException e)
 		{
 			e.printStackTrace();
 		}
+	}
+
+	// To READ All student details from Database
+	public void runStudentReadOperation(String dbOperation, HttpServletRequest request, HttpServletResponse response,
+			String sqlQuery) throws IOException
+	{
+		if (connection != null)
+		{
+			// getting preparedStatement for insert operation from Util class
+			preparedStatementForRead = MySqlJdbcUtil.getPreparedStatement(connection, sqlQuery);
+
+			// user input not required for fetching complete Student details
+
+			if (preparedStatementForRead != null)
+			{
+
+				try
+				{
+					// executing READ query and Collecting results to ResultSet
+					resultSet = preparedStatementForRead.executeQuery();
+				} catch (SQLException e)
+				{
+					e.printStackTrace();
+				}
+			}
+
+		}
+
+		// to display response in the browser screen
+		response.setContentType("text/html");
+
+		PrintWriter out = response.getWriter();
+
+		out.println("<html> <body>");
+
+		out.println("<h1>" + resultSet + "</h1>");
+
+		out.println(" </body></html>");
+
 	}
 }
