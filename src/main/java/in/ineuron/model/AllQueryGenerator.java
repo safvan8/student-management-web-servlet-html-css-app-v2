@@ -36,7 +36,7 @@ public class AllQueryGenerator
 		{
 
 			// creating insert query
-			String insertQuery = "INSERT INTO schooldbo.student  ('name','age','gender','mobileno') VALUES (?,?,?,?)";
+			String insertQuery = "INSERT INTO schooldbo.student (name,age,gender,mobileno)  VALUES (?,?,?,?)";
 
 			return insertQuery;
 		} else

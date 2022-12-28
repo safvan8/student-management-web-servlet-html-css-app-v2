@@ -2,6 +2,7 @@ package in.ineuron.controller;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.SQLException;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -14,12 +15,7 @@ import in.ineuron.model.MySqlJdbcUtil;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import javax.servlet.ServletException;
 import javax.servlet.annotation.WebInitParam;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 /**
  * Servlet implementation class MainServlet
@@ -30,11 +26,13 @@ import javax.servlet.http.HttpServletResponse;
 public class MainServlet extends HttpServlet
 {
 	private static final long serialVersionUID = 1L;
-	Connection connection;
+	private Connection connection;
 
 	private AllQueryGenerator allQueryGenerator = AllQueryGenerator.getAllQueryGenerator();
 
 	PreparedStatement preparedStatementForInsert;
+
+	private int insertRowCount;
 
 	static
 	{
@@ -62,41 +60,50 @@ public class MainServlet extends HttpServlet
 		connection = MySqlJdbcUtil.getmySqlJdbcConnection();
 
 		if (dbOperation.equals("insert"))
-	{
-			
+		{
+
 			// getting sql query based on the specified dbOperation
 			String sqlQuery = allQueryGenerator.generateSqlQuery(dbOperation);
-			
+
 			if (connection != null)
 			{
 				// getting preparedStatement for insert operation from Util class
 				preparedStatementForInsert = MySqlJdbcUtil.getPreparedStatement(connection, sqlQuery);
-			
-			// setting user input values to the insert query
-				preparedStatementForInsert= allQueryGenerator.setUserInputValuesToPreparedStatement(request, dbOperation, preparedStatementForInsert);
-				System.out.println(preparedStatementForInsert);				
-				
+
+				// setting user input values to the insert query
+				preparedStatementForInsert = allQueryGenerator.setUserInputValuesToPreparedStatement(request,
+						dbOperation, preparedStatementForInsert);
+				System.out.println("insert query values set successfull");
+
+				insertRowCount = 0;
+				if (preparedStatementForInsert != null)
+				{
+					try
+					{
+						insertRowCount = preparedStatementForInsert.executeUpdate();
+
+					} catch (SQLException e)
+					{
+						e.printStackTrace();
+					}
+				}
+
+			}
 		}
-		}
 
-		// finding which operation is requested by user from html file
-		// String dbOperation = request.getParameter("operation");
-
-		String name = request.getParameter("name");
-		// Integer age = Integer.parseInt(request.getParameter("age"));
-		String gender = request.getParameter("operation");
-		// Integer mobileNo = Integer.parseInt(request.getParameter("mobileno"));
-
-//				System.out.println(name);
-		//
-
+		// to display response in the browser screen
 		response.setContentType("text/html");
+
 		PrintWriter out = response.getWriter();
 
 		out.println("<html> <body>");
 
-		out.println("<h1>" + name + "</h1>");
-		out.println("<h1>" + preparedStatementForInsert + "</h1>");
+		// to get successfull/failed message
+		if (insertRowCount > 0)
+			out.println("<h1>" + "Student registartion Successfull" + "</h1>");
+		else
+			out.println("<h1>" + "Student registartion failed" + "</h1>");
+
 		out.println(" </body></html>");
 
 	}
