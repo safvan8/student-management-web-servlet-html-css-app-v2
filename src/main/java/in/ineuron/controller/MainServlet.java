@@ -146,6 +146,8 @@ public class MainServlet extends HttpServlet
 				{
 					e.printStackTrace();
 				}
+				
+				displayOutput.showReadOperationsResult(response,resultSet);
 			}
 
 		}
