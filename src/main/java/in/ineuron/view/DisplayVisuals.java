@@ -2,7 +2,6 @@ package in.ineuron.view;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-
 import javax.servlet.http.HttpServletResponse;
 
 public class DisplayVisuals
