@@ -38,7 +38,7 @@ public class AllQueryGenerator
 		} else if (dbOperation.equals("read"))
 		{
 			// creating Select Query
-			String readQuery = "SELECT id,name,age,ifnull(gender,''),mobileno FROM schooldbo.student";
+			String readQuery = "SELECT id,name,age,ifnull(gender,'Not Disclosed'),mobileno FROM schooldbo.student";
 
 			return readQuery;
 			
@@ -68,6 +68,9 @@ public class AllQueryGenerator
 			String name = request.getParameter("name");
 			Integer age = Integer.parseInt(request.getParameter("age"));
 			String gender = request.getParameter("gender");
+			
+			System.out.println(gender + 98989809);
+			
 			String mobileNo = request.getParameter("mobileno").trim();
 
 			// setting user input values into preparedStatement object
