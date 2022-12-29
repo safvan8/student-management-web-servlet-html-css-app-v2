@@ -4,12 +4,13 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import in.ineuron.model.AllQueryGenerator;
 import in.ineuron.model.MySqlJdbcUtil;
+import in.ineuron.view.DisplayOutput;
 
 public class UpdateController
 {
@@ -20,6 +21,12 @@ public class UpdateController
 	
 	// object to generate queries 
 	private AllQueryGenerator allQueryGenerator = AllQueryGenerator.getAllQueryGenerator();
+	
+	// to collect existing details
+	private ResultSet resultSet;
+	
+	// Object of view component -- to display outputs to end user
+	private DisplayOutput displayOutput = DisplayOutput.getDisplayVisualsObj();;
 	
 	private UpdateController()
 	{
@@ -49,19 +56,34 @@ public class UpdateController
 			
 			// setting user input values to the ExsistingDetailsUpdateQuery
 			preparedStatementforExistingDetails = allQueryGenerator.SetUserInput_ExsistingDetailsUpdateQuery(request, dbOperation, preparedStatementforExistingDetails);
+			
+			// executing select query
+			if (preparedStatementforExistingDetails != null)
+			{
+				try
+				{
+					resultSet = preparedStatementforExistingDetails.executeQuery();
+				} catch (SQLException e)
+				{
+					e.printStackTrace();
+				}
+				
+				displayOutput.showExistingDetailsBeforeUpdate(response, resultSet);
+			}
 		}
-	
+		
+		
 
-		// to display response in the browser screen
-		response.setContentType("text/html");
-
-		PrintWriter out = response.getWriter();
-
-		out.println("<html> <body>");
-
-		out.println("<h1>" + preparedStatementforExistingDetails + "</h1>");
-
-		out.println(" </body></html>");
+//		// to display response in the browser screen
+//		response.setContentType("text/html");
+//
+//		PrintWriter out = response.getWriter();
+//
+//		out.println("<html> <body>");
+//
+//		out.println("<h1>" + preparedStatementforExistingDetails + "</h1>");
+//
+//		out.println(" </body></html>");
 
 	}
 }

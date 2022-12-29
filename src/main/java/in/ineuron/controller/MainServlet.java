@@ -68,7 +68,7 @@ public class MainServlet extends HttpServlet
 	{
 		// finding which operation is requested by user from html file
 		String dbOperation = request.getParameter("operation");
-
+	
 		// getting JDBC connection from util class
 		connection = MySqlJdbcUtil.getmySqlJdbcConnection();
 
@@ -87,8 +87,9 @@ public class MainServlet extends HttpServlet
 			System.out.println(sqlQuery);
 
 			readController.runStudentReadOperation(connection, dbOperation, request, response, sqlQuery);
-		} else if (dbOperation.equals("update"))
+		} else if (dbOperation.equals("fetchingBeforeUpdate"))
 		{
+			System.out.println("hi");
 			// generating sql query to fetch existing details of student based on student id
 			String existingDetailsSqlQuery = allQueryGenerator.generateSqlQuery(dbOperation);
 			

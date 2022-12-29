@@ -25,6 +25,11 @@ public class InsertController
 	// to allow object creation only once -- instance var
 	private static InsertController insertController;
 	
+	
+	// Object of view component -- to display outputs to end user
+	private DisplayOutput displayOutput = DisplayOutput.getDisplayVisualsObj();;
+	
+	
 	private InsertController()
 	{
 		// restricting Object creation outside class
@@ -44,8 +49,7 @@ public class InsertController
 		}
 	}
 
-	//Object  of view component -- to display outputs to end user
-	private DisplayOutput displayOutput = DisplayOutput.getDisplayVisualsObj();;
+	
 
 	// for Student INSERTION to database
 	public void runStudentInsertOperation(Connection connection,    String dbOperation, HttpServletRequest request, HttpServletResponse response,
@@ -61,6 +65,7 @@ public class InsertController
 					preparedStatementForInsert);
 			System.out.println("user entered values Set to PreparedStatement successfull");
 
+			// executing INSERT query
 			insertRowCount = 0;
 			if (preparedStatementForInsert != null)
 			{
@@ -76,8 +81,7 @@ public class InsertController
 		}
 		try
 		{
-			// to display response in the browser screen -- passing response and row count
-			// object
+			// to display response in the browser screen -- passing response and row count object
 			displayOutput.showInsertOperationsResult(response, insertRowCount);
 		} catch (IOException e)
 		{

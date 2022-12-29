@@ -38,10 +38,10 @@ public class AllQueryGenerator
 		} else if (dbOperation.equals("read"))
 		{
 			// creating Select Query
-			String readQuery = "SELECT * FROM schooldbo.student";
+			String readQuery = "SELECT id,name,age,ifnull(gender,''),mobileno FROM schooldbo.student";
 
 			return readQuery;
-		} else if (dbOperation.equals("update"))
+		} else if (dbOperation.equals("fetchingBeforeUpdate"))
 		{
 			// creating Select Query to get details based on student id
 			String readQuery = "SELECT * FROM schooldbo.student where id = ?";

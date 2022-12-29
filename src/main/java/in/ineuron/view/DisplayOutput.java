@@ -100,6 +100,63 @@ public class DisplayOutput
 
 		out.println(" </body></html>");
 		
-		
 	}
+	
+	// To display existing details , before updating
+	// this method will display form to user for original updation and saving 
+	public void showExistingDetailsBeforeUpdate(HttpServletResponse response, ResultSet resultSet) throws IOException
+	{
+		System.out.println("\n**showExistingDetailsBeforeUpdate() method is executing");
+
+		// to display response in the browser screen
+		response.setContentType("text/html");
+		PrintWriter out = response.getWriter();
+		
+		Integer id=0;
+		String name = "";
+		Integer age=0;
+		String gender="";
+		String mobileno="";
+		
+		try
+		{
+			// fetching results from resultSet
+			while (resultSet.next())
+			{
+				// getting values from ResultSet one by one
+				 id = resultSet.getInt(1);
+				 name = resultSet.getString(2);
+				 age = resultSet.getInt(3);
+				 gender = resultSet.getString(4);
+				 mobileno = resultSet.getString(5);
+				
+			}
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+		
+		out.println("<html>"
+				+ "<head>"
+				+ "<title>Insert title here</title>"
+				+ "</head>"
+				+ "<body bgcolor='#FFFFE0'>"
+				+ "	<h1>Update existing Student details</h1>"
+				+ "	<h3 style=\"color: crimson;\">Update changes and save</h3>"
+				+ "	<style>"
+				+ "label {"
+				+ "	display: block;"
+				+ "	text-align: left;"
+				+ "}"
+				+ "</style>");
+
+		out.println("<form style='color: blue' action='./mainServlet' method='POST'>");
+		out.print("<input type='hidden' name='operation' value='insert'>" + 
+
+		"<label for='name'>Name of Student: </label>"  +
+
+		"<input type='text' name='name' value="+name +"><br>" +
+
+		"<label for='age'>Age: </label> <input type='text' id='age' name='age'><br>");
+}
 }
