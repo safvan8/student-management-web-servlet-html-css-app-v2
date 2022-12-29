@@ -41,13 +41,18 @@ public class AllQueryGenerator
 			String readQuery = "SELECT id,name,age,ifnull(gender,''),mobileno FROM schooldbo.student";
 
 			return readQuery;
-		} else if (dbOperation.equals("fetchingBeforeUpdate"))
+			
+		}
+		// to generate query for fetching existing student details based on entered student id
+		else if (dbOperation.equals("fetchingBeforeUpdate"))
 		{
 			// creating Select Query to get details based on student id
 			String readQuery = "SELECT * FROM schooldbo.student where id = ?";
 
 			return readQuery;
-		}
+		} 
+		// Query for updating db with changes made by user
+//		else if(f)
 
 		return ""; // for remaining features
 

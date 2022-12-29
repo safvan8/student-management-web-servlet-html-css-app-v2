@@ -11,23 +11,20 @@ public class DisplayOutput
 {
 	private static DisplayOutput displayOutput ;
 	
-
 	private DisplayOutput()
 	{
 		// restricting class Object creation outside class
 	}
 
 	public static DisplayOutput getDisplayVisualsObj()
-	{
-		
+	{	
 		if (displayOutput == null)
 		{
 			displayOutput = new DisplayOutput();
 			return displayOutput;
 		}
 		else
-			return displayOutput;
-		
+			return displayOutput;	
 	}
 
 	// to display result of INSERTION OPERATION
@@ -48,7 +45,6 @@ public class DisplayOutput
 			out.println("<h1>" + "Student registartion failed" + "</h1>");
 
 		out.println(" </body></html>");
-
 	}
 	
 	// To Display result of READ Operation
@@ -70,7 +66,6 @@ public class DisplayOutput
 				+ "<th>AGE</th>"
 				+ "<th>GENDER</th>"
 				+ "<th>MOB.No</th>");
-	    
 		
 		try
 		{
@@ -97,7 +92,6 @@ public class DisplayOutput
 			e.printStackTrace();
 		}
 		
-
 		out.println(" </body></html>");
 		
 	}
@@ -135,7 +129,7 @@ public class DisplayOutput
 		{
 			e.printStackTrace();
 		}
-		
+		// displaying existing student details
 		out.println("<html>"
 				+ "<head>"
 				+ "<title>Insert title here</title>"
@@ -143,6 +137,7 @@ public class DisplayOutput
 				+ "<body bgcolor='#FFFFE0'>"
 				+ "	<h1>Update existing Student details</h1>"
 				+ "	<h3 style=\"color: crimson;\">Update changes and save</h3>"
+				+ "<h2>Student ID:"+id +"</h2>"
 				+ "	<style>"
 				+ "label {"
 				+ "	display: block;"
@@ -150,6 +145,7 @@ public class DisplayOutput
 				+ "}"
 				+ "</style>");
 
+		// showing a form to user and Getting post request for update
 		out.println("<form style='color: blue' action='./mainServlet' method='POST'>");
 		
 		out.print("<input type='hidden' name='operation' value='update'>" + 
@@ -175,6 +171,5 @@ public class DisplayOutput
 			"</form>" +
 			"</body>" +
 			"</html>"  );
-
-}
+	}
 }

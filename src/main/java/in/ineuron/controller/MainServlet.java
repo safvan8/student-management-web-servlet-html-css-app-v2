@@ -79,7 +79,8 @@ public class MainServlet extends HttpServlet
 
 			// calling method Student details insertion to DB
 			insertController.runStudentInsertOperation(connection,dbOperation, request, response, sqlQuery);
-		} else if (dbOperation.equals("read"))
+		}
+		else if (dbOperation.equals("read"))
 		{
 			// getting sql query based on the specified dbOperation
 			String sqlQuery = allQueryGenerator.generateSqlQuery(dbOperation);
@@ -87,15 +88,19 @@ public class MainServlet extends HttpServlet
 			System.out.println(sqlQuery);
 
 			readController.runStudentReadOperation(connection, dbOperation, request, response, sqlQuery);
-		} else if (dbOperation.equals("fetchingBeforeUpdate"))
+		}
+		else if (dbOperation.equals("fetchingBeforeUpdate"))
 		{
-			System.out.println("hi");
 			// generating sql query to fetch existing details of student based on student id
 			String existingDetailsSqlQuery = allQueryGenerator.generateSqlQuery(dbOperation);
 			
 			System.out.println("existing details fetching using  :"+existingDetailsSqlQuery);
 			
 			updateController.showExistingStudentDetailsBeforeUpdate(connection, dbOperation, request, response, existingDetailsSqlQuery);
+		}
+		else if (dbOperation.equals("update"))
+		{
+			System.out.println(request.getParameter("gender"));
 		}
 
 	}
