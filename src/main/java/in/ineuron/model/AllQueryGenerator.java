@@ -57,7 +57,7 @@ public class AllQueryGenerator
 		{
 			// creating Select Query to UPDATE existing student details based on id
 			String updateQuery = "UPDATE schooldbo.student "
-					+ "SET name='?',age=?,gender='?',mobileno='?'  "
+					+ "SET name=?,age=?,gender=?,mobileno=?  "
 					+ " WHERE id=?";
 
 			return updateQuery;
@@ -113,7 +113,7 @@ public class AllQueryGenerator
 	}
 	
 	// this method is to Set user input values to the preparedSatetement for UPDATE Operations
-	public PreparedStatement setUserInput_UpdateQuery(HttpServletRequest request,PreparedStatement preparedStatement)
+	public PreparedStatement setUserInput_UpdateQuery(HttpServletRequest request,PreparedStatement preparedStatementForUpdate)
 	{
 					// getting values entered by the user from request Object
 					Integer id = Integer.parseInt(request.getParameter("id"));
@@ -128,8 +128,12 @@ public class AllQueryGenerator
 					try
 					{
 						// setting user input values into preparedStatement object
-						preparedStatement.setString(1, name);
-						preparedStatement.setInt(2, age);
+						preparedStatementForUpdate.setString(1, name);
+						preparedStatementForUpdate.setInt(2, age);
+						preparedStatementForUpdate.setString(3, gender);
+						preparedStatementForUpdate.setString(4, mobileNo);
+						
+						preparedStatementForUpdate.setInt(5, id);
 								
 					} catch (SQLException e)
 					{
@@ -139,6 +143,6 @@ public class AllQueryGenerator
 					
 					
 					// returning Object after setting values
-					return preparedStatement;
+					return preparedStatementForUpdate;
 	}
 }
