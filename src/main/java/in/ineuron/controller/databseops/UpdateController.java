@@ -32,6 +32,9 @@ public class UpdateController
 	// for updating existing student details
 	private PreparedStatement preparedStatementForUpdate ;
 	
+	//to verify student record updated or not
+	private int updateRowCount;
+	
 	private UpdateController()
 	{
 		// restricting Object creation outside class
@@ -90,16 +93,31 @@ public class UpdateController
 			// setting user entered values to the preparedStatement before execution
 			preparedStatementForUpdate = allQueryGenerator.setUserInput_UpdateQuery(request, preparedStatementForUpdate);
 			
-			// to display response in the browser screen
-			response.setContentType("text/html");
-
-			PrintWriter out = response.getWriter();
-
-			out.println("<html> <body>");
-
-			out.println("<h1>" + preparedStatementForUpdate + "</h1>");
-
-			out.println(" </body></html>");
+			// clearing previos row count values
+			updateRowCount =0;
+			if (preparedStatementForUpdate != null)
+			{
+				try
+				{	// executing update query
+					updateRowCount = preparedStatementForUpdate.executeUpdate();
+				} catch (SQLException e)
+				{
+					e.printStackTrace();
+				}
+			}
+			
+			displayOutput.showUpdateOperationsResult(response, updateRowCount);
+			
+//			// to display response in the browser screen
+//			response.setContentType("text/html");
+//
+//			PrintWriter out = response.getWriter();
+//
+//			out.println("<html> <body>");
+//
+//			out.println("<h1>" + preparedStatementForUpdate + "</h1>");
+//
+//			out.println(" </body></html>");
 			
 		}
 

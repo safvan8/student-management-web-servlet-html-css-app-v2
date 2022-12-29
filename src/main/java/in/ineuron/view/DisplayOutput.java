@@ -171,4 +171,24 @@ public class DisplayOutput
 			"</body>" +
 			"</html>"  );
 	}
+	
+	// to display Final result of UPDATE OPERATION
+		public void showUpdateOperationsResult(HttpServletResponse response,Integer updateRowCount) throws IOException
+		{
+			System.out.println("\n showUpdateOperationsResult method executing...");
+			// to display response in the browser screen
+			response.setContentType("text/html");
+
+			PrintWriter out = response.getWriter();
+
+			out.println("<html> <body>");
+
+			// to get successful/failed message
+			if (updateRowCount > 0)
+				out.println("<h1>" + "Student Detais updated successfuly" + "</h1>");
+			else
+				out.println("<h1>" + "Student details update failed" + "</h1>");
+
+			out.println(" </body></html>");
+		}
 }
