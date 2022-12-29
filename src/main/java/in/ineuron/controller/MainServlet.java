@@ -10,13 +10,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import in.ineuron.controller.databseops.InsertController;
+import in.ineuron.controller.databseops.ReadController;
 import in.ineuron.model.AllQueryGenerator;
 import in.ineuron.model.MySqlJdbcUtil;
 import in.ineuron.view.DisplayOutput;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import javax.servlet.ServletException;
+import javax.servlet.ServletException	;
 import javax.servlet.annotation.WebInitParam;
 
 /**
@@ -33,13 +34,11 @@ public class MainServlet extends HttpServlet
 
 	private AllQueryGenerator allQueryGenerator = AllQueryGenerator.getAllQueryGenerator();
 
-
-	private PreparedStatement preparedStatementForRead;
-
-	private ResultSet resultSet;
-
+	// object for insert operations
 	InsertController insertController = InsertController.getInsertController();
 	
+	// Object for Read operations
+	ReadController readController = ReadController.getReadController();
 
 	//Object  of view component -- to display outputs to end user
 	private DisplayOutput displayOutput = DisplayOutput.getDisplayVisualsObj();;
@@ -83,7 +82,7 @@ public class MainServlet extends HttpServlet
 
 			System.out.println(sqlQuery);
 
-			runStudentReadOperation(dbOperation, request, response, sqlQuery);
+			readController.runStudentReadOperation(connection, dbOperation, request, response, sqlQuery);
 		} else if (dbOperation.equals("update"))
 		{
 			// generating sql query to fetch existing details of student based on student id
@@ -94,36 +93,5 @@ public class MainServlet extends HttpServlet
 		}
 
 	}
-
-
-	// To READ All student details from Database
-	public void runStudentReadOperation(String dbOperation, HttpServletRequest request, HttpServletResponse response,
-			String sqlQuery) throws IOException
-	{
-		if (connection != null)
-		{
-			// getting preparedStatement for insert operation from Util class
-			preparedStatementForRead = MySqlJdbcUtil.getPreparedStatement(connection, sqlQuery);
-
-			// user input not required for fetching complete Student details
-
-			if (preparedStatementForRead != null)
-			{
-
-				try
-				{
-					// executing READ query and Collecting results to ResultSet
-					resultSet = preparedStatementForRead.executeQuery();
-				} catch (SQLException e)
-				{
-					e.printStackTrace();
-				}
-
-				displayOutput.showReadOperationsResult(response, resultSet);
-			}
-
-		}
-	}
-	
-	
+		
 }
