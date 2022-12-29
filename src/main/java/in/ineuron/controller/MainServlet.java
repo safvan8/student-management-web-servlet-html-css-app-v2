@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import in.ineuron.controller.databseops.InsertController;
 import in.ineuron.model.AllQueryGenerator;
 import in.ineuron.model.MySqlJdbcUtil;
 import in.ineuron.view.DisplayOutput;
@@ -32,16 +33,15 @@ public class MainServlet extends HttpServlet
 
 	private AllQueryGenerator allQueryGenerator = AllQueryGenerator.getAllQueryGenerator();
 
-	private PreparedStatement preparedStatementForInsert;
 
 	private PreparedStatement preparedStatementForRead;
 
 	private ResultSet resultSet;
 
-	// Object of Class in View
-	private Integer insertRowCount;
+	InsertController insertController = InsertController.getInsertController();
+	
 
-	//
+	//Object  of view component -- to display outputs to end user
 	private DisplayOutput displayOutput = DisplayOutput.getDisplayVisualsObj();;
 
 	static
@@ -75,7 +75,7 @@ public class MainServlet extends HttpServlet
 			String sqlQuery = allQueryGenerator.generateSqlQuery(dbOperation);
 
 			// calling method Student details insertion to DB
-			runStudentInsertOperation(dbOperation, request, response, sqlQuery);
+			insertController.runStudentInsertOperation(connection,dbOperation, request, response, sqlQuery);
 		} else if (dbOperation.equals("read"))
 		{
 			// getting sql query based on the specified dbOperation
@@ -95,43 +95,6 @@ public class MainServlet extends HttpServlet
 
 	}
 
-	// for Student INSERTION to database
-	public void runStudentInsertOperation(String dbOperation, HttpServletRequest request, HttpServletResponse response,
-			String sqlQuery)
-	{
-		if (connection != null)
-		{
-			// getting preparedStatement for insert operation from Util class
-			preparedStatementForInsert = MySqlJdbcUtil.getPreparedStatement(connection, sqlQuery);
-
-			// setting user input values to the insert query
-			preparedStatementForInsert = allQueryGenerator.setUserInputValuesToPreparedStatement(request, dbOperation,
-					preparedStatementForInsert);
-			System.out.println("user entered values Set to PreparedStatement successfull");
-
-			insertRowCount = 0;
-			if (preparedStatementForInsert != null)
-			{
-				try
-				{
-					insertRowCount = preparedStatementForInsert.executeUpdate();
-
-				} catch (SQLException e)
-				{
-					e.printStackTrace();
-				}
-			}
-		}
-		try
-		{
-			// to display response in the browser screen -- passing response and row count
-			// object
-			displayOutput.showInsertOperationsResult(response, insertRowCount);
-		} catch (IOException e)
-		{
-			e.printStackTrace();
-		}
-	}
 
 	// To READ All student details from Database
 	public void runStudentReadOperation(String dbOperation, HttpServletRequest request, HttpServletResponse response,
