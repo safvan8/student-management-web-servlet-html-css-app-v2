@@ -61,8 +61,7 @@ public class InsertController
 			preparedStatementForInsert = MySqlJdbcUtil.getPreparedStatement(connection, sqlQuery);
 
 			// setting user input values to the insert query
-			preparedStatementForInsert = allQueryGenerator.setUserInputValuesToInsertPreparedStatement(request, dbOperation,
-					preparedStatementForInsert);
+			preparedStatementForInsert = allQueryGenerator.setUserInputValuesToInsertPreparedStatement(request,	preparedStatementForInsert);
 			System.out.println("user entered values Set to PreparedStatement successfull");
 
 			// executing INSERT query

@@ -109,7 +109,7 @@ public class MainServlet extends HttpServlet
 			String updateQuery = allQueryGenerator.generateSqlQuery(dbOperation);
 			System.out.println(updateQuery);
 			
-			updateController.runStudentUpdateOperation(connection, dbOperation, request, response, updateQuery);
+			updateController.runStudentUpdateOperation(connection,request, response, updateQuery);
 		}
 
 	}

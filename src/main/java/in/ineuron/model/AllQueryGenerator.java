@@ -65,12 +65,8 @@ public class AllQueryGenerator
 	}
 
 	// this method is to Set user input values to the preparedSatetement for INSERT Operations
-	public PreparedStatement setUserInputValuesToInsertPreparedStatement(HttpServletRequest request, String dbOperation,
-			PreparedStatement preparedStatement)
+	public PreparedStatement setUserInputValuesToInsertPreparedStatement(HttpServletRequest request,PreparedStatement preparedStatement)
 	{
-		// identifying user dbOperation
-		if (dbOperation.equals("insert"))
-		{
 			// getting values entered by the user from request Object
 			String name = request.getParameter("name");
 			Integer age = Integer.parseInt(request.getParameter("age"));
@@ -95,14 +91,11 @@ public class AllQueryGenerator
 
 			// returning Object after setting values
 			return preparedStatement;
-		}
-		return preparedStatement; // dummy
 
 	}
 
 	// this method is to Set student id to the preparedStatement for fetching  ExsistingDetails before updating
-	public PreparedStatement setUserInput_ExsistingDetailsUpdateQuery(HttpServletRequest request, String dbOperation,
-			PreparedStatement preparedStatement)
+	public PreparedStatement setUserInput_ExsistingDetailsUpdateQuery(HttpServletRequest request,PreparedStatement preparedStatement)
 	{
 		Integer id = Integer.parseInt(request.getParameter("id"));
 
@@ -119,7 +112,7 @@ public class AllQueryGenerator
 	}
 	
 	// this method is to Set user input values to the preparedSatetement for UPDATE Operations
-	public PreparedStatement setUserInput_UpdateQuery(HttpServletRequest request, String dbOperation, PreparedStatement preparedStatement)
+	public PreparedStatement setUserInput_UpdateQuery(HttpServletRequest request,PreparedStatement preparedStatement)
 	{
 					// getting values entered by the user from request Object
 					String name = request.getParameter("name");

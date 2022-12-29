@@ -59,8 +59,9 @@ public class UpdateController
 			preparedStatementforExistingDetails = MySqlJdbcUtil.getPreparedStatement(connection, existingDetailsSqlQuery);
 			
 			// setting user input values to the ExsistingDetailsUpdateQuery
-			preparedStatementforExistingDetails = allQueryGenerator.setUserInput_ExsistingDetailsUpdateQuery(request, dbOperation, preparedStatementforExistingDetails);
-			
+			preparedStatementforExistingDetails = allQueryGenerator.setUserInput_ExsistingDetailsUpdateQuery(request,
+					preparedStatementforExistingDetails);
+
 			// executing select query
 			if (preparedStatementforExistingDetails != null)
 			{
@@ -78,7 +79,7 @@ public class UpdateController
 	}
 	
 	// method for updating modification done on student details  by user
-	public void runStudentUpdateOperation(Connection connection,    String dbOperation, HttpServletRequest request, HttpServletResponse response,
+	public void runStudentUpdateOperation(Connection connection,HttpServletRequest request, HttpServletResponse response,
 			String updateQuery) throws IOException
 	{
 		if (connection != null)
@@ -87,7 +88,7 @@ public class UpdateController
 			preparedStatementForUpdate = MySqlJdbcUtil.getPreparedStatement(connection, updateQuery);
 			
 			// setting user entered values to the preparedStatement before execution
-			preparedStatementForUpdate = allQueryGenerator.setUserInput_UpdateQuery(request, dbOperation, preparedStatementForUpdate);
+			preparedStatementForUpdate = allQueryGenerator.setUserInput_UpdateQuery(request, preparedStatementForUpdate);
 			
 			System.out.println();
 		
