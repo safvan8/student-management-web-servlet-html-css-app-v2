@@ -7,10 +7,6 @@ import javax.servlet.http.HttpServletRequest;
 
 public class AllQueryGenerator
 {
-	private String name;
-	private Integer age;
-	private String gender;
-	private String mobileNo;
 	private static AllQueryGenerator allQueryGenerator;
 
 	private AllQueryGenerator()
@@ -43,32 +39,31 @@ public class AllQueryGenerator
 		{
 			// creating Select Query
 			String readQuery = "SELECT * FROM schooldbo.student";
-			
+
 			return readQuery;
-		}
-		else if (dbOperation.equals("update"))
+		} else if (dbOperation.equals("update"))
 		{
 			// creating Select Query to get details based on student id
 			String readQuery = "SELECT * FROM schooldbo.student where id = ?";
-			
+
 			return readQuery;
 		}
 
-			return ""; //  for remaining features
+		return ""; // for remaining features
 
 	}
 
-	public PreparedStatement setUserInputValuesToPreparedStatement(HttpServletRequest request, String dbOperation,
+	public PreparedStatement setUserInputValuesToInsertPreparedStatement(HttpServletRequest request, String dbOperation,
 			PreparedStatement preparedStatement)
 	{
 		// identifying user dbOperation
 		if (dbOperation.equals("insert"))
 		{
 			// getting values entered by the user from request Object
-			name = request.getParameter("name");
-			age = Integer.parseInt(request.getParameter("age"));
-			gender = request.getParameter("gender");
-			mobileNo = request.getParameter("mobileno").trim();
+			String name = request.getParameter("name");
+			Integer age = Integer.parseInt(request.getParameter("age"));
+			String gender = request.getParameter("gender");
+			String mobileNo = request.getParameter("mobileno").trim();
 
 			// setting user input values into preparedStatement object
 			try
@@ -90,5 +85,22 @@ public class AllQueryGenerator
 		}
 		return preparedStatement; // dummy
 
+	}
+
+	public PreparedStatement SetUserInput_ExsistingDetailsUpdateQuery(HttpServletRequest request, String dbOperation,
+			PreparedStatement preparedStatement)
+	{
+		Integer id = Integer.parseInt(request.getParameter("id"));
+
+		try
+		{
+			preparedStatement.setInt(1, id);
+		} catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+		System.out.println("\nuser input set successfully to ExsistingDetailsUpdateQuery");
+
+		return preparedStatement;
 	}
 }

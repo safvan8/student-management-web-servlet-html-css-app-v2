@@ -19,6 +19,7 @@ public class InsertController
 	
 	private Integer insertRowCount;
 	
+	// object to generate queries 
 	private AllQueryGenerator allQueryGenerator = AllQueryGenerator.getAllQueryGenerator();
 	
 	// to allow object creation only once -- instance var
@@ -56,7 +57,7 @@ public class InsertController
 			preparedStatementForInsert = MySqlJdbcUtil.getPreparedStatement(connection, sqlQuery);
 
 			// setting user input values to the insert query
-			preparedStatementForInsert = allQueryGenerator.setUserInputValuesToPreparedStatement(request, dbOperation,
+			preparedStatementForInsert = allQueryGenerator.setUserInputValuesToInsertPreparedStatement(request, dbOperation,
 					preparedStatementForInsert);
 			System.out.println("user entered values Set to PreparedStatement successfull");
 

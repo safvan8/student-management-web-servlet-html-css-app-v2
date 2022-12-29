@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import in.ineuron.controller.databseops.InsertController;
 import in.ineuron.controller.databseops.ReadController;
+import in.ineuron.controller.databseops.UpdateController;
 import in.ineuron.model.AllQueryGenerator;
 import in.ineuron.model.MySqlJdbcUtil;
 import in.ineuron.view.DisplayOutput;
@@ -39,6 +40,9 @@ public class MainServlet extends HttpServlet
 	
 	// Object for Read operations
 	ReadController readController = ReadController.getReadController();
+	
+	// Object for Update operations
+	UpdateController updateController = UpdateController.getAllQueryGenerator();
 
 	//Object  of view component -- to display outputs to end user
 	private DisplayOutput displayOutput = DisplayOutput.getDisplayVisualsObj();;
@@ -86,10 +90,11 @@ public class MainServlet extends HttpServlet
 		} else if (dbOperation.equals("update"))
 		{
 			// generating sql query to fetch existing details of student based on student id
-			String sqlQuery = allQueryGenerator.generateSqlQuery(dbOperation);
+			String existingDetailsSqlQuery = allQueryGenerator.generateSqlQuery(dbOperation);
 			
-			System.out.println("existing details fetching using :"+sqlQuery);
+			System.out.println("existing details fetching using  :"+existingDetailsSqlQuery);
 			
+			updateController.showExistingStudentDetailsBeforeUpdate(connection, dbOperation, request, response, existingDetailsSqlQuery);
 		}
 
 	}
