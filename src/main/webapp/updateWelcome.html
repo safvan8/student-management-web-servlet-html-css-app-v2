@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body bgcolor='#FFFFE0'>
+	<h1>Update Existing Student details</h1>
+	<h2 style="color: crimson;">Kindly Enter Student ID to update details</h2>
+	<style>
+		label {
+			display: block;
+			text-align: left;
+		}
+</style>
+
+	<form style="color: blue" action="./mainServlet" method="post">
+		
+		<input type="hidden" name="operation" value="update">
+		<label for="age">Enter Student ID: </label> <input type="text" id="id" name="id"><br>
+		 <input type="submit" value="View Student Details" >
+
+	</form>
+</body>
+</html>

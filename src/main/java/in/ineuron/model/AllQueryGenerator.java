@@ -46,6 +46,13 @@ public class AllQueryGenerator
 			
 			return readQuery;
 		}
+		else if (dbOperation.equals("update"))
+		{
+			// creating Select Query to get details based on student id
+			String readQuery = "SELECT * FROM schooldbo.student where id = ?";
+			
+			return readQuery;
+		}
 
 			return ""; //  for remaining features
 

@@ -15,6 +15,7 @@ import in.ineuron.view.DisplayOutput;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.servlet.ServletException;
 import javax.servlet.annotation.WebInitParam;
 
 /**
@@ -83,6 +84,13 @@ public class MainServlet extends HttpServlet
 			System.out.println(sqlQuery);
 
 			runStudentReadOperation(dbOperation, request, response, sqlQuery);
+		} else if (dbOperation.equals("update"))
+		{
+			// generating sql query to fetch existing details of student based on student id
+			String sqlQuery = allQueryGenerator.generateSqlQuery(dbOperation);
+			
+			System.out.println("existing details fetching using :"+sqlQuery);
+			
 		}
 
 	}
@@ -99,7 +107,7 @@ public class MainServlet extends HttpServlet
 			// setting user input values to the insert query
 			preparedStatementForInsert = allQueryGenerator.setUserInputValuesToPreparedStatement(request, dbOperation,
 					preparedStatementForInsert);
-			System.out.println("insert query values to PreparedStatement successfull");
+			System.out.println("user entered values Set to PreparedStatement successfull");
 
 			insertRowCount = 0;
 			if (preparedStatementForInsert != null)
@@ -116,7 +124,8 @@ public class MainServlet extends HttpServlet
 		}
 		try
 		{
-			// to display response in the browser screen -- passing response and row count object
+			// to display response in the browser screen -- passing response and row count
+			// object
 			displayOutput.showInsertOperationsResult(response, insertRowCount);
 		} catch (IOException e)
 		{
@@ -146,22 +155,12 @@ public class MainServlet extends HttpServlet
 				{
 					e.printStackTrace();
 				}
-				
-				displayOutput.showReadOperationsResult(response,resultSet);
+
+				displayOutput.showReadOperationsResult(response, resultSet);
 			}
 
 		}
-
-		// to display response in the browser screen
-		response.setContentType("text/html");
-
-		PrintWriter out = response.getWriter();
-
-		out.println("<html> <body>");
-
-		out.println("<h1>" + resultSet + "</h1>");
-
-		out.println(" </body></html>");
-
 	}
+	
+	
 }
