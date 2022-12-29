@@ -3,8 +3,6 @@ package in.ineuron.view;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
-import java.sql.SQLException;
-
 import javax.servlet.http.HttpServletResponse;
 
 public class DisplayOutput
@@ -149,7 +147,8 @@ public class DisplayOutput
 		out.println("<form style='color: blue' action='./mainServlet' method='POST'>");
 		
 		out.print("<input type='hidden' name='operation' value='update'>" + 
-
+				"<input type='hidden' name='id' value="+id +"><br>" + 
+				
 		"<label for='name'>Name of Student: </label>"  +
 
 		"<input type='text' name='name' value="+name +"><br>" +

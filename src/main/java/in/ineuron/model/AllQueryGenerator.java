@@ -56,7 +56,9 @@ public class AllQueryGenerator
 		else if (dbOperation.equals("update"))
 		{
 			// creating Select Query to UPDATE existing student details based on id
-			String updateQuery = "UPDATE schooldbo.student SET name='?',age=?,gender='?',mobileno='?'  WHERE id=?";
+			String updateQuery = "UPDATE schooldbo.student "
+					+ "SET name='?',age=?,gender='?',mobileno='?'  "
+					+ " WHERE id=?";
 
 			return updateQuery;
 		}
@@ -71,7 +73,6 @@ public class AllQueryGenerator
 			String name = request.getParameter("name");
 			Integer age = Integer.parseInt(request.getParameter("age"));
 			String gender = request.getParameter("gender");
-			
 			String mobileNo = request.getParameter("mobileno").trim();
 
 			// setting user input values into preparedStatement object
@@ -115,14 +116,28 @@ public class AllQueryGenerator
 	public PreparedStatement setUserInput_UpdateQuery(HttpServletRequest request,PreparedStatement preparedStatement)
 	{
 					// getting values entered by the user from request Object
+					Integer id = Integer.parseInt(request.getParameter("id"));
+					
 					String name = request.getParameter("name");
 					Integer age = Integer.parseInt(request.getParameter("age"));
 					String gender = request.getParameter("gender");
-					
 					String mobileNo = request.getParameter("mobileno").trim();
-
-					System.out.println(age + mobileNo);
-
+					
+					System.out.println(id+" "+name+" "+" "+age+" "+" "+gender+" "+" "+mobileNo+" ");
+					
+					try
+					{
+						// setting user input values into preparedStatement object
+						preparedStatement.setString(1, name);
+						preparedStatement.setInt(2, age);
+								
+					} catch (SQLException e)
+					{
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					
+					
 					// returning Object after setting values
 					return preparedStatement;
 	}

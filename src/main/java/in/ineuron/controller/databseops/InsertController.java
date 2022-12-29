@@ -50,10 +50,9 @@ public class InsertController
 	}
 
 	
-
 	// for Student INSERTION to database
-	public void runStudentInsertOperation(Connection connection,    String dbOperation, HttpServletRequest request, HttpServletResponse response,
-			String sqlQuery)
+	public void runStudentInsertOperation(Connection connection, HttpServletRequest request,
+			HttpServletResponse response, String sqlQuery)
 	{
 		if (connection != null)
 		{

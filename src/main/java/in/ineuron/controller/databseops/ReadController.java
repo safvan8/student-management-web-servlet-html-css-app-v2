@@ -43,7 +43,7 @@ public class ReadController
 	}
 	
 	// To READ All student details from Database
-		public void runStudentReadOperation(Connection connection, String dbOperation, HttpServletRequest request, HttpServletResponse response,
+		public void runStudentReadOperation(Connection connection, HttpServletRequest request, HttpServletResponse response,
 				String sqlQuery) throws IOException
 		{
 			if (connection != null)

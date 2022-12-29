@@ -49,8 +49,8 @@ public class UpdateController
 	}
 
 	// method for displaying existing student details before updating
-	public void showExistingStudentDetailsBeforeUpdate(Connection connection, String dbOperation,
-			HttpServletRequest request, HttpServletResponse response, String existingDetailsSqlQuery) throws IOException
+	public void showExistingStudentDetailsBeforeUpdate(Connection connection, HttpServletRequest request,
+			HttpServletResponse response, String existingDetailsSqlQuery) throws IOException
 	{
 		System.out.println(connection);
 		if (connection != null)
@@ -90,21 +90,20 @@ public class UpdateController
 			// setting user entered values to the preparedStatement before execution
 			preparedStatementForUpdate = allQueryGenerator.setUserInput_UpdateQuery(request, preparedStatementForUpdate);
 			
-			System.out.println();
-		
+			// to display response in the browser screen
+			response.setContentType("text/html");
+
+			PrintWriter out = response.getWriter();
+
+			out.println("<html> <body>");
+
+			out.println("<h1>" + preparedStatementForUpdate + "</h1>");
+
+			out.println(" </body></html>");
 			
 		}
 
-	// to display response in the browser screen
-	response.setContentType("text/html");
 
-	PrintWriter out = response.getWriter();
-
-	out.println("<html> <body>");
-
-	out.println("<h1>" + preparedStatementForUpdate + "</h1>");
-
-	out.println(" </body></html>");
 	}
 	
 }

@@ -1,14 +1,10 @@
 package in.ineuron.controller;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import in.ineuron.controller.databseops.InsertController;
 import in.ineuron.controller.databseops.ReadController;
 import in.ineuron.controller.databseops.UpdateController;
@@ -16,9 +12,6 @@ import in.ineuron.model.AllQueryGenerator;
 import in.ineuron.model.MySqlJdbcUtil;
 import in.ineuron.view.DisplayOutput;
 import java.io.IOException;
-import java.io.PrintWriter;
-
-import javax.servlet.ServletException	;
 import javax.servlet.annotation.WebInitParam;
 
 /**
@@ -80,7 +73,7 @@ public class MainServlet extends HttpServlet
 			System.out.println("\ngenerated query "+sqlQuery);
 			
 			// calling method Student details for inserting Student details to DB
-			insertController.runStudentInsertOperation(connection,dbOperation, request, response, sqlQuery);
+			insertController.runStudentInsertOperation(connection, request, response, sqlQuery);
 		}
 		else if (dbOperation.equals("read"))
 		{
@@ -89,7 +82,7 @@ public class MainServlet extends HttpServlet
 
 			System.out.println("\ngenerated query "+sqlQuery);
 
-			readController.runStudentReadOperation(connection, dbOperation, request, response, sqlQuery);
+			readController.runStudentReadOperation(connection, request, response, sqlQuery);
 		}
 		// to display existing student in details in the form to user
 		else if (dbOperation.equals("fetchingBeforeUpdate"))
@@ -99,7 +92,7 @@ public class MainServlet extends HttpServlet
 			
 			System.out.println("existing details fetching using  :"+existingDetailsSqlQuery);
 			
-			updateController.showExistingStudentDetailsBeforeUpdate(connection, dbOperation, request, response, existingDetailsSqlQuery);
+			updateController.showExistingStudentDetailsBeforeUpdate(connection, request, response, existingDetailsSqlQuery);
 		}
 		// for updating the student details with values entered by user
 		else if (dbOperation.equals("update"))
@@ -111,7 +104,5 @@ public class MainServlet extends HttpServlet
 			
 			updateController.runStudentUpdateOperation(connection,request, response, updateQuery);
 		}
-
-	}
-		
+	}		
 }
