@@ -151,12 +151,30 @@ public class DisplayOutput
 				+ "</style>");
 
 		out.println("<form style='color: blue' action='./mainServlet' method='POST'>");
-		out.print("<input type='hidden' name='operation' value='insert'>" + 
+		
+		out.print("<input type='hidden' name='operation' value='update'>" + 
 
 		"<label for='name'>Name of Student: </label>"  +
 
 		"<input type='text' name='name' value="+name +"><br>" +
 
-		"<label for='age'>Age: </label> <input type='text' id='age' name='age'><br>");
+		"<label for='age'>Age: </label> <input type='text' id='age' name='age' value="+age +" ><br>");
+		
+		out.println("<label for='gender'>Gender: </label> "+ 
+				 
+				"<select name=gender multiple >");
+				
+				out.println("<option value=m>Male</option>" +
+				"<option value=f>Female</option>" +
+				"<option value=o>Other</option>" +
+		
+			"</select> <br> <label for='mobileno'>Mobile No:</label>" + 
+			"<input type='text' id='mobileno' name='mobileno' value="+mobileno +"><br> <br>" + 
+			"<input type='submit' value='Save Changes'>" +
+			
+			"</form>" +
+			"</body>" +
+			"</html>"  );
+
 }
 }
