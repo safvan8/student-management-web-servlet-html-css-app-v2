@@ -77,7 +77,9 @@ public class MainServlet extends HttpServlet
 			// getting sql query based on the specified dbOperation
 			String sqlQuery = allQueryGenerator.generateSqlQuery(dbOperation);
 
-			// calling method Student details insertion to DB
+			System.out.println("\ngenerated query "+sqlQuery);
+			
+			// calling method Student details for inserting Student details to DB
 			insertController.runStudentInsertOperation(connection,dbOperation, request, response, sqlQuery);
 		}
 		else if (dbOperation.equals("read"))
@@ -85,22 +87,29 @@ public class MainServlet extends HttpServlet
 			// getting sql query based on the specified dbOperation
 			String sqlQuery = allQueryGenerator.generateSqlQuery(dbOperation);
 
-			System.out.println(sqlQuery);
+			System.out.println("\ngenerated query "+sqlQuery);
 
 			readController.runStudentReadOperation(connection, dbOperation, request, response, sqlQuery);
 		}
+		// to display existing student in details in the form to user
 		else if (dbOperation.equals("fetchingBeforeUpdate"))
 		{
-			// generating sql query to fetch existing details of student based on student id
+			// generating sql query to FETCH existing student details of student based on student id
 			String existingDetailsSqlQuery = allQueryGenerator.generateSqlQuery(dbOperation);
 			
 			System.out.println("existing details fetching using  :"+existingDetailsSqlQuery);
 			
 			updateController.showExistingStudentDetailsBeforeUpdate(connection, dbOperation, request, response, existingDetailsSqlQuery);
 		}
+		// for updating the student details with values entered by user
 		else if (dbOperation.equals("update"))
 		{
-			System.out.println(request.getParameter("gender"));
+			// generating sql query to UPDATE existing student details of student based on student id
+			
+			String updateQuery = allQueryGenerator.generateSqlQuery(dbOperation);
+			System.out.println(updateQuery);
+			
+			updateController.runStudentUpdateOperation(connection, dbOperation, request, response, updateQuery);
 		}
 
 	}

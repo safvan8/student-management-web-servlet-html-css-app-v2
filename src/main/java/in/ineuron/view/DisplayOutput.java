@@ -160,9 +160,9 @@ public class DisplayOutput
 				 
 				"<select name=gender multiple >");
 				
-				out.println("<option value=m>Male</option>" +
-				"<option value=f>Female</option>" +
-				"<option value=o>Other</option>" +
+				out.println("<option value='Male'>Male</option>" +
+				"<option value='Female'>Female</option>" +
+				"<option value='Other'>Other</option>" +
 		
 			"</select> <br> <label for='mobileno'>Mobile No:</label>" + 
 			"<input type='text' id='mobileno' name='mobileno' value="+mobileno +"><br> <br>" + 

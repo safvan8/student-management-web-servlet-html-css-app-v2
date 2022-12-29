@@ -17,6 +17,7 @@ public class UpdateController
 	// allow Object creation of the class only once
 	private static UpdateController updateController;
 	
+	// for fetching existing student details
 	private PreparedStatement preparedStatementforExistingDetails;
 	
 	// object to generate queries 
@@ -27,6 +28,9 @@ public class UpdateController
 	
 	// Object of view component -- to display outputs to end user
 	private DisplayOutput displayOutput = DisplayOutput.getDisplayVisualsObj();;
+	
+	// for updating existing student details
+	private PreparedStatement preparedStatementForUpdate ;
 	
 	private UpdateController()
 	{
@@ -55,7 +59,7 @@ public class UpdateController
 			preparedStatementforExistingDetails = MySqlJdbcUtil.getPreparedStatement(connection, existingDetailsSqlQuery);
 			
 			// setting user input values to the ExsistingDetailsUpdateQuery
-			preparedStatementforExistingDetails = allQueryGenerator.SetUserInput_ExsistingDetailsUpdateQuery(request, dbOperation, preparedStatementforExistingDetails);
+			preparedStatementforExistingDetails = allQueryGenerator.setUserInput_ExsistingDetailsUpdateQuery(request, dbOperation, preparedStatementforExistingDetails);
 			
 			// executing select query
 			if (preparedStatementforExistingDetails != null)
@@ -71,19 +75,35 @@ public class UpdateController
 				displayOutput.showExistingDetailsBeforeUpdate(response, resultSet);
 			}
 		}
-		
-		
-
-//		// to display response in the browser screen
-//		response.setContentType("text/html");
-//
-//		PrintWriter out = response.getWriter();
-//
-//		out.println("<html> <body>");
-//
-//		out.println("<h1>" + preparedStatementforExistingDetails + "</h1>");
-//
-//		out.println(" </body></html>");
-
 	}
+	
+	// method for updating modification done on student details  by user
+	public void runStudentUpdateOperation(Connection connection,    String dbOperation, HttpServletRequest request, HttpServletResponse response,
+			String updateQuery) throws IOException
+	{
+		if (connection != null)
+		{
+			// getting Prepared Statement Object from util class for updation
+			preparedStatementForUpdate = MySqlJdbcUtil.getPreparedStatement(connection, updateQuery);
+			
+			// setting user entered values to the preparedStatement before execution
+			preparedStatementForUpdate = allQueryGenerator.setUserInput_UpdateQuery(request, dbOperation, preparedStatementForUpdate);
+			
+			System.out.println();
+		
+			
+		}
+
+	// to display response in the browser screen
+	response.setContentType("text/html");
+
+	PrintWriter out = response.getWriter();
+
+	out.println("<html> <body>");
+
+	out.println("<h1>" + preparedStatementForUpdate + "</h1>");
+
+	out.println(" </body></html>");
+	}
+	
 }
