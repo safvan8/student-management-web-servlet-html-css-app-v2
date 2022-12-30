@@ -27,7 +27,7 @@ public class InsertController
 	
 	
 	// Object of view component -- to display outputs to end user
-	private DisplayOutput displayOutput = DisplayOutput.getDisplayVisualsObj();;
+	private DisplayOutput displayOutput = DisplayOutput.getDisplayOutput();;
 	
 	
 	private InsertController()

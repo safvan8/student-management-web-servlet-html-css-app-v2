@@ -17,7 +17,7 @@ public class ReadController
 	private ResultSet resultSet;
 	
 	//Object  of view component -- to display outputs to end user
-	private DisplayOutput displayOutput = DisplayOutput.getDisplayVisualsObj();;
+	private DisplayOutput displayOutput = DisplayOutput.getDisplayOutput();;
 
 	// to allow object creation only once -- instance var
 	private static ReadController readController;

@@ -5,14 +5,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
 import in.ineuron.controller.databseops.DeleteController;
 import in.ineuron.controller.databseops.InsertController;
 import in.ineuron.controller.databseops.ReadController;
 import in.ineuron.controller.databseops.UpdateController;
 import in.ineuron.model.AllQueryGenerator;
 import in.ineuron.model.MySqlJdbcUtil;
-import in.ineuron.view.DisplayOutput;
 import java.io.IOException;
 import javax.servlet.annotation.WebInitParam;
 
@@ -42,8 +40,6 @@ public class MainServlet extends HttpServlet
 	// Object for Student details deletion
 	DeleteController deleteController = DeleteController.getDeleteController();
 
-	//Object  of view component -- to display outputs to end user
-	private DisplayOutput displayOutput = DisplayOutput.getDisplayVisualsObj();;
 
 	static
 	{

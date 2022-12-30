@@ -27,7 +27,7 @@ public class DeleteController
 	private int deleteRowCount;
 	
 	// Object of view component -- to display outputs to end user
-	private DisplayOutput displayOutput = DisplayOutput.getDisplayVisualsObj();
+	private DisplayOutput displayOutput = DisplayOutput.getDisplayOutput();
 
 	private DeleteController()
 	{

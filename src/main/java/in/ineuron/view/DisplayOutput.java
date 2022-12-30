@@ -14,7 +14,7 @@ public class DisplayOutput
 		// restricting class Object creation outside class
 	}
 
-	public static DisplayOutput getDisplayVisualsObj()
+	public static DisplayOutput getDisplayOutput()
 	{	
 		if (displayOutput == null)
 		{
