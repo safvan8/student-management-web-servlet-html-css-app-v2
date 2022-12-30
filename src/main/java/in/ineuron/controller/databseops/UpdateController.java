@@ -27,7 +27,7 @@ public class UpdateController
 	private ResultSet resultSet;
 	
 	// Object of view component -- to display outputs to end user
-	private DisplayOutput displayOutput = DisplayOutput.getDisplayVisualsObj();;
+	private DisplayOutput displayOutput = DisplayOutput.getDisplayVisualsObj();
 	
 	// for updating existing student details
 	private PreparedStatement preparedStatementForUpdate ;
@@ -53,7 +53,7 @@ public class UpdateController
 
 	// method for displaying existing student details before updating
 	public void showExistingStudentDetailsBeforeUpdate(Connection connection, HttpServletRequest request,
-			HttpServletResponse response, String existingDetailsSqlQuery) throws IOException
+			HttpServletResponse response, String existingDetailsSqlQuery) 
 	{
 		System.out.println(connection);
 		if (connection != null)

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import in.ineuron.model.AllQueryGenerator;
 import in.ineuron.model.MySqlJdbcUtil;
+import in.ineuron.view.DisplayOutput;
 
 public class DeleteController
 {
@@ -26,6 +27,9 @@ public class DeleteController
 	
 	// rowcount deleted
 	private int deleteRowCount;
+	
+	// Object of view component -- to display outputs to end user
+	private DisplayOutput displayOutput = DisplayOutput.getDisplayVisualsObj();
 
 	private DeleteController()
 	{
@@ -46,7 +50,7 @@ public class DeleteController
 	
 	// method for delelting existing student details -- this method will perform DB operation
 	public void runStudentDeleteOperation(Connection connection, HttpServletRequest request,
-			HttpServletResponse response, String deleteQuery) throws IOException
+			HttpServletResponse response, String deleteQuery) 
 	{
 		// getting preparedStatement object from util class for deletion
 		preparedStatementForDelete = MySqlJdbcUtil.getPreparedStatement(connection, deleteQuery);
@@ -55,7 +59,7 @@ public class DeleteController
 		 preparedStatementForDelete = allQueryGenerator.setUserInput_DeleteQuery(request, preparedStatementForDelete);
 		
 			// clearing previous rowcount
-		 deleteRowCount = 0;
+			deleteRowCount = 0;
 			try
 			{ // executing delete Query
 				deleteRowCount = preparedStatementForDelete.executeUpdate();
@@ -63,25 +67,8 @@ public class DeleteController
 			{
 				e.printStackTrace();
 			}
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		 
-		// to display response in the browser screen
-		response.setContentType("text/html");
-
-		PrintWriter out = response.getWriter();
-
-		out.println("<html> <body>");
-
-		out.println("<h1>" + preparedStatementForDelete + "</h1>");
-
-		out.println(" </body></html>");
+			System.out.println(deleteRowCount);
+		 displayOutput.showDeleteOperationsResult(response, deleteRowCount);
 	}
 	
 }

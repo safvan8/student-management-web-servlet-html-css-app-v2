@@ -46,13 +46,21 @@ public class DisplayOutput
 	}
 	
 	// To Display result of READ Operation
-	public void showReadOperationsResult(HttpServletResponse response, ResultSet resultSet) throws IOException
+	public void showReadOperationsResult(HttpServletResponse response, ResultSet resultSet) 
 	{
 		System.out.println("\n**showReadOperationsResult() method is executing");
 
 		// to display response in the browser screen
 		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
+
+		PrintWriter out = null;
+		try
+		{
+			out = response.getWriter();
+		} catch (IOException e)
+		{
+			e.printStackTrace();
+		}
 
 		out.println("<html> <body bgcolor='#F5FFFA'>");
 		out.println("<h1> All Student details </h1>");
@@ -182,37 +190,58 @@ public class DisplayOutput
 	}
 	
 	// to display Final result of UPDATE OPERATION
-		public void showUpdateOperationsResult(HttpServletResponse response,Integer updateRowCount) 
+	public void showUpdateOperationsResult(HttpServletResponse response, Integer updateRowCount)
+	{
+		System.out.println("\n showUpdateOperationsResult method executing...");
+		// to display response in the browser screen
+		response.setContentType("text/html");
+
+		PrintWriter out = null;
+		
+		try
 		{
-			System.out.println("\n showUpdateOperationsResult method executing...");
-			// to display response in the browser screen
-			response.setContentType("text/html");
-
-			PrintWriter out = null;;
-		
-			try{ out = response.getWriter();}
-			catch (IOException e)
-			{
-				e.printStackTrace();
-			}
-
-			out.println("<html> <body>");
-
-			// to get successful/failed message
-			if (updateRowCount > 0)
-				out.println("<h1>" + "Student Detais updated successfuly" + "</h1>");
-			else
-				out.println("<h1>" + "Student details update failed" + "</h1>");
-
-			out.println(" </body></html>");
+			out = response.getWriter();
+		} catch (IOException e)
+		{
+			e.printStackTrace();
 		}
-		
+
+		out.println("<html> <body>");
+
+		// to get successful/failed message
+		if (updateRowCount > 0)
+			out.println("<h1>" + "Student Detais updated successfuly" + "</h1>");
+		else
+			out.println("<h1>" + "Student details update failed" + "</h1>");
+
+		out.println(" </body></html>");
+	}
 
 	// to display Final result of DELETE OPERATION	
 	public void showDeleteOperationsResult(HttpServletResponse response, Integer deleteRowCount)	
 	{
 		System.out.println("\n showDeleteOperationsResult method executing...");
 		
+		// to display response in the browser screen
+		response.setContentType("text/html");
+		
+		PrintWriter out = null;
+				try
+		{
+			out = response.getWriter();
+		} catch (IOException e)
+		{
+			e.printStackTrace();
+		}
+		
+		out.println("<html> <body>");
 
+		// to get successful/failed message
+		if (deleteRowCount > 0)
+			out.println("<h1>" + "Student record Deleted successfuly" + "</h1>");
+		else
+			out.println("<h1>" + "Student record deletion failed" + "</h1>");
+
+		out.println(" </body></html>");
 	}
 }
