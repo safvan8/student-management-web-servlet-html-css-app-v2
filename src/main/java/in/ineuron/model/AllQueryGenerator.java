@@ -28,30 +28,25 @@ public class AllQueryGenerator
 	// this method will generate query for any type of db operation
 	public String generateSqlQuery(String dbOperation)
 	{
-
 		if (dbOperation.equals("insert"))
 		{
-
 			// creating insert query
 			String insertQuery = "INSERT INTO schooldbo.student (name,age,gender,mobileno)  VALUES (?,?,?,?)";
-
 			return insertQuery;
-		} else if (dbOperation.equals("read"))
+		} 
+		else if (dbOperation.equals("read"))
 		{
 			// creating Select Query
 			String readQuery = "SELECT id,name,age,ifnull(gender,'Not Disclosed'),mobileno FROM schooldbo.student";
-
 			return readQuery;
-			
 		}
 		// to generate query for fetching existing student details based on entered student id
 		else if (dbOperation.equals("fetchingBeforeUpdate"))
 		{
 			// creating Select Query to get details based on student id
 			String readQuery = "SELECT * FROM schooldbo.student where id = ?";
-
 			return readQuery;
-		} 
+		}
 		// Query for updating db with changes made by user based on sid
 		else if (dbOperation.equals("update"))
 		{
@@ -59,11 +54,16 @@ public class AllQueryGenerator
 			String updateQuery = "UPDATE schooldbo.student "
 					+ "SET name=?,age=?,gender=?,mobileno=?  "
 					+ " WHERE id=?";
-
 			return updateQuery;
 		}
-		return ""; // for remaining features
+		// to generate delete query for deleting existing student records
+		else if (dbOperation.equals("delete"))
+		{
+			String deleteQuery = "DELETE FROM schooldbo.student WHERE id=?";
+			return deleteQuery;
+		}
 
+		return ""; // for remaining features
 	}
 
 	// this method is to Set user input values to the preparedSatetement for INSERT Operations
@@ -137,12 +137,31 @@ public class AllQueryGenerator
 								
 					} catch (SQLException e)
 					{
-						// TODO Auto-generated catch block
+
 						e.printStackTrace();
 					}
-					
-					
 					// returning Object after setting values
 					return preparedStatementForUpdate;
+	}
+	
+	
+	// this method is to Set user specified student id to the preparedSatetement for DELETE Operations
+	public PreparedStatement setUserInput_DeleteQuery(HttpServletRequest request,
+			PreparedStatement preparedStatementForDelete)
+	{
+		// getting values entered by the user from request Object
+		Integer id = Integer.parseInt(request.getParameter("id"));
+
+		System.out.println("usesr enterd student id : " + id);
+
+		try
+		{ // setting user input values into preparedStatement object
+			preparedStatementForDelete.setInt(1, id);
+		} catch (SQLException e)
+		{
+			e.printStackTrace();
+		}
+		// returning Object after setting values
+		return preparedStatementForDelete;
 	}
 }

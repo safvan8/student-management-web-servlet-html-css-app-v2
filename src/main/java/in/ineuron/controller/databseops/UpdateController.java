@@ -31,7 +31,7 @@ public class UpdateController
 	
 	// for updating existing student details
 	private PreparedStatement preparedStatementForUpdate ;
-	
+
 	//to verify student record updated or not
 	private int updateRowCount;
 	
@@ -80,48 +80,34 @@ public class UpdateController
 			}
 		}
 	}
-	
-	// method for updating modification done on student details  by user
-	public void runStudentUpdateOperation(Connection connection,HttpServletRequest request, HttpServletResponse response,
-			String updateQuery) throws IOException
+
+	// method for updating modification done on student details by user
+	public void runStudentUpdateOperation(Connection connection, HttpServletRequest request,
+			HttpServletResponse response, String updateQuery) 
 	{
 		if (connection != null)
 		{
 			// getting Prepared Statement Object from util class for updation
 			preparedStatementForUpdate = MySqlJdbcUtil.getPreparedStatement(connection, updateQuery);
-			
+
 			// setting user entered values to the preparedStatement before execution
-			preparedStatementForUpdate = allQueryGenerator.setUserInput_UpdateQuery(request, preparedStatementForUpdate);
-			
-			// clearing previos row count values
-			updateRowCount =0;
+			preparedStatementForUpdate = allQueryGenerator.setUserInput_UpdateQuery(request,
+					preparedStatementForUpdate);
+
+			// clearing previoss row count values
+			updateRowCount = 0;
 			if (preparedStatementForUpdate != null)
 			{
 				try
-				{	// executing update query
+				{ // executing update query
 					updateRowCount = preparedStatementForUpdate.executeUpdate();
 				} catch (SQLException e)
 				{
 					e.printStackTrace();
 				}
 			}
-			
 			displayOutput.showUpdateOperationsResult(response, updateRowCount);
-			
-//			// to display response in the browser screen
-//			response.setContentType("text/html");
-//
-//			PrintWriter out = response.getWriter();
-//
-//			out.println("<html> <body>");
-//
-//			out.println("<h1>" + preparedStatementForUpdate + "</h1>");
-//
-//			out.println(" </body></html>");
-			
 		}
-
-
 	}
-	
+
 }

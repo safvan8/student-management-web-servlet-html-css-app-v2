@@ -35,6 +35,7 @@ public class InsertController
 		// restricting Object creation outside class
 	}
 	
+	// making class singleton
 	public static InsertController getInsertController()
 	{
 		if (insertController == null)

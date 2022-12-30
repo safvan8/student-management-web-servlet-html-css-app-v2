@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Delete Student Record</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="description" content="users can delete existing student details using student ID from this webpage">
+		<style>
+			body {
+				  background-image: url('J:/NewEclipseCodes/StudentManagement/src/main/webapp/bgimage.jpg');
+				  background-repeat: no-repeat;
+				  background-attachment: fixed;  
+				  background-size: cover;	
+			}
+			h1 {
+				font-family: Times, serif;
+				color: #8000ff;
+				text-align: default;
+			}
+			p {
+				font-family: Arial, sans-serif;
+				font-size: 21px;
+				text-align: default;
+				color: #804040;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>Delete Student Details</h1>
+		<p>Delete Student details by entering below form</p>
+		
+		<form style="color: blue" action="./mainServlet" method="post">
+		
+		<input type="hidden" name="operation" value="delete">
+		<label for="age">Enter Student ID: </label> 
+		<input type="text" id="id" name="id"><br>
+		 <input type="submit" value="Delete Student Record" >
+
+	</form>
+	
+	</body>
+</html>

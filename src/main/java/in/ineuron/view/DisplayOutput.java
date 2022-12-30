@@ -96,13 +96,21 @@ public class DisplayOutput
 	
 	// To display existing details , before updating
 	// this method will display form to user for original updation and saving 
-	public void showExistingDetailsBeforeUpdate(HttpServletResponse response, ResultSet resultSet) throws IOException
+	public void showExistingDetailsBeforeUpdate(HttpServletResponse response, ResultSet resultSet) 
 	{
 		System.out.println("\n**showExistingDetailsBeforeUpdate() method is executing");
 
 		// to display response in the browser screen
 		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
+
+		PrintWriter out = null;
+		try
+		{
+			out = response.getWriter();
+		} catch (IOException e)
+		{
+			e.printStackTrace(); 
+		}
 		
 		Integer id=0;
 		String name = "";
@@ -170,16 +178,23 @@ public class DisplayOutput
 			"</form>" +
 			"</body>" +
 			"</html>"  );
+				
 	}
 	
 	// to display Final result of UPDATE OPERATION
-		public void showUpdateOperationsResult(HttpServletResponse response,Integer updateRowCount) throws IOException
+		public void showUpdateOperationsResult(HttpServletResponse response,Integer updateRowCount) 
 		{
 			System.out.println("\n showUpdateOperationsResult method executing...");
 			// to display response in the browser screen
 			response.setContentType("text/html");
 
-			PrintWriter out = response.getWriter();
+			PrintWriter out = null;;
+		
+			try{ out = response.getWriter();}
+			catch (IOException e)
+			{
+				e.printStackTrace();
+			}
 
 			out.println("<html> <body>");
 
@@ -191,4 +206,13 @@ public class DisplayOutput
 
 			out.println(" </body></html>");
 		}
+		
+
+	// to display Final result of DELETE OPERATION	
+	public void showDeleteOperationsResult(HttpServletResponse response, Integer deleteRowCount)	
+	{
+		System.out.println("\n showDeleteOperationsResult method executing...");
+		
+
+	}
 }

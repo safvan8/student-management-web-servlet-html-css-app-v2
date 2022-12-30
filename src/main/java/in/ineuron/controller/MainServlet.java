@@ -5,6 +5,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import in.ineuron.controller.databseops.DeleteController;
 import in.ineuron.controller.databseops.InsertController;
 import in.ineuron.controller.databseops.ReadController;
 import in.ineuron.controller.databseops.UpdateController;
@@ -17,7 +19,7 @@ import javax.servlet.annotation.WebInitParam;
 /**
  * Servlet implementation class MainServlet
  */
-@WebServlet(urlPatterns = { "/mainServlet" }, initParams = {
+@WebServlet(urlPatterns = { "/mainServlet" }, loadOnStartup = 1, initParams = {
 		@WebInitParam(name = "jdbcURL", value = "jdbc:mysql://localhost:3306/schooldbo"),
 		@WebInitParam(name = "username", value = "root"), @WebInitParam(name = "passwd", value = "Safvan@123") })
 public class MainServlet extends HttpServlet
@@ -36,6 +38,9 @@ public class MainServlet extends HttpServlet
 	
 	// Object for Update operations
 	UpdateController updateController = UpdateController.getAllQueryGenerator();
+	
+	// Object for Student details deletion
+	DeleteController deleteController = DeleteController.getDeleteController();
 
 	//Object  of view component -- to display outputs to end user
 	private DisplayOutput displayOutput = DisplayOutput.getDisplayVisualsObj();;
@@ -97,12 +102,21 @@ public class MainServlet extends HttpServlet
 		// for updating the student details with values entered by user
 		else if (dbOperation.equals("update"))
 		{
-			// generating sql query to UPDATE existing student details of student based on student id
+			// generating sql query to UPDATE existing student details based on student id
 			
 			String updateQuery = allQueryGenerator.generateSqlQuery(dbOperation);
 			System.out.println(updateQuery);
 			
 			updateController.runStudentUpdateOperation(connection,request, response, updateQuery);
+		}
+		
+		else if (dbOperation.equals("delete"))
+		{
+			 // generating sql query to DELETE existing student details based on student id
+			String deleteQuery = allQueryGenerator.generateSqlQuery(dbOperation);
+			System.out.println("generated query" +deleteQuery);
+			
+			deleteController.runStudentDeleteOperation(connection, request, response, deleteQuery);
 		}
 	}		
 }
