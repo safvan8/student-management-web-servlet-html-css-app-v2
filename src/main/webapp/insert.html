@@ -14,25 +14,35 @@ label {
 }
 </style>
 
-	<form style="color: blue" action="./mainServlet"
-		method="POST">
+	<form style="color: blue" action="./mainServlet" method="POST">
 
-		<input type="hidden" name="operation" value="insert"> <label
-			for="name">Name of Student: </label> <input type="text" name="name"><br>
+		<input type="hidden" name="operation" value="insert">
+		
+		<label for="name">Name of Student: </label> 
+		<input type="text" name="name" placeholder="Enter name here"><br>
 
-		<label for="age">Age: </label> <input type="text" id="age" name="age"><br>
-
-		<label for="gender">Gender: </label> <select name=gender multiple>
-
+		<label for="age">Age: </label>
+		<input type="text" id="age" name="age"><br><br>
+		
+		<label for="dob">Select Date of Birth: </label>
+		<input type="date" value="2000-01-01"><br><br>
+		
+		<label for="gender">Gender: </label> 
+		<select name=gender multiple>
 			<option value='Male'>Male</option>
 			<option value='Female'>Female</option>
 			<option value='Other'>Other</option>
-			
-
-		</select> <br> <label for="mobileno">Mobile No:</label> <input type="text"
-			id="mobileno" name="mobileno"><br> <br> <input
-			type="submit" value="Register">
+		</select> <br><br> 
+		
+		<label for="city">City: </label>
+		<input type="text" name='city' ><br><br>
+				
+		<label for="mobileno">Mobile No:</label> 
+		<input type="text" id="mobileno" name="mobileno" placeholder="+91 xxxxxxxx" > <br> <br> <input
+		
+		type="submit" value="Register">
 
 	</form>
+
 </body>
 </html>
