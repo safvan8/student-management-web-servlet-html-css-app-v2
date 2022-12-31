@@ -40,7 +40,7 @@ public class AllQueryGenerator
 		else if (dbOperation.equals("read"))
 		{
 			// creating Select Query
-			String readQuery = "SELECT id,name,age,ifnull(gender,'Not Disclosed'),mobileno FROM schooldbo.student";
+			String readQuery = "SELECT id,name,age,dob,ifnull(gender,'Not Disclosed'),mobileno,ifnull(city,'Unknown') FROM schooldbo.student";
 			return readQuery;
 		}
 		// to generate query for fetching existing student details based on entered student id

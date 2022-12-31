@@ -1,5 +1,7 @@
 package in.ineuron.model;
 
+import java.text.SimpleDateFormat;
+
 public class DateFormatter
 {
 	
@@ -27,5 +29,15 @@ public class DateFormatter
 		java.sql.Date sqlDate = java.sql.Date.valueOf(date);
 		
 		return sqlDate;
+	}
+	
+	// to convert SqlDate to user friendly format
+	public String getUserFriendlyFormattedDate(java.sql.Date sqlDate)
+	{
+		SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd-MMM-yyyy");
+		
+		String userFriendlyDate = simpleDateFormat.format(sqlDate);
+		
+		return userFriendlyDate;
 	}
 }

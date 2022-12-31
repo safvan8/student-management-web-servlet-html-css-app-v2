@@ -5,9 +5,16 @@ import java.io.PrintWriter;
 import java.sql.ResultSet;
 import javax.servlet.http.HttpServletResponse;
 
+import in.ineuron.model.DateFormatter;
+
 public class DisplayOutput
 {
+	//  obj for any Date related Conversions
+	DateFormatter dateFormatter = DateFormatter.getDateFormatter();
+	
+	
 	private static DisplayOutput displayOutput ;
+	
 	
 	private DisplayOutput()
 	{
@@ -68,10 +75,12 @@ public class DisplayOutput
 				+ "<caption style='caption-side:bottom'> Students List</caption>");
 		out.println("<tr bgcolor='yellow'>"
 				+ "<th>ID</th>"
-				+"<th>NAME</th>"
-				+ "<th>AGE</th>"
-				+ "<th>GENDER</th>"
-				+ "<th>MOB.No</th>");
+				+"<th>Name</th>"
+				+ "<th>Age</th>"
+				+ "<th>Date of Birth</th>"
+				+ "<th>Gender</th>"
+				+ "<th>Mobile No.</th>"
+				+ "<th>City</th>");
 		
 		try
 		{
@@ -82,16 +91,26 @@ public class DisplayOutput
 				Integer id = resultSet.getInt(1);
 				String name = resultSet.getString(2);
 				Integer age = resultSet.getInt(3);
-				String gender = resultSet.getString(4);
-				String mobileno = resultSet.getString(5);
+				
+				// getting Sql Date -- not user friendly
+				java.sql.Date sqlDate = resultSet.getDate(4);
+				// converting to user firiendly Date format
+				String dob = dateFormatter.getUserFriendlyFormattedDate(sqlDate);
+				
+				String gender = resultSet.getString(5);
+				String mobileno = resultSet.getString(6);
+				String city = resultSet.getString(7);
 				
 				// Displaying data to user
 				out.println("<tr>"
 						+ "<td>"+id+"</td>"
 						+ "<td>"+name+"</td>"
 						+ "<td>"+age+"</td>"
+						+ "<td>"+dob+"</td>"
 						+ "<td>"+gender+"</td>"
-						+ "<td>"+mobileno+"</td>");
+						+ "<td>"+mobileno+"</td>"
+						+ "<td>"+city+"</td>");
+				
 			}
 		} catch (Exception e)
 		{
