@@ -32,7 +32,7 @@
 		
 		<input type="hidden" name="operation" value="delete">
 		<label for="age">Enter Student ID: </label> 
-		<input type="text" id="id" name="id"><br>
+		<input type="text" id="id" name="id" pattern="^(?!0+$)[0-9]{1,10}$" required><br>
 		 <input type="submit" value="Delete Student Record" >
 
 	</form>

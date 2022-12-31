@@ -18,9 +18,21 @@
 		
 		<input type="hidden" name="operation" value="fetchingBeforeUpdate">
 		<label for="id">Enter Student ID: </label> 
-		<input type="text" id="id" name="id"><br>
+		<input type="text" id="id" name="id" pattern="^(?!0+$)[0-9]{1,10}$" required><br>
 		 <input type="submit" value="View Student Details" >
 
 	</form>
 </body>
 </html>
+
+
+<!--
+
+/^[1-9]\d*$/
+ 
+/: This marks the beginning and end of the regular expression.
+^: This anchor specifies the start of the string.
+[1-9]: This character class matches any single digit from 1 to 9.
+\d: This character class matches any digit (0 to 9).
+*: This quantifier specifies that the preceding character or character class (in this case, \d) can be matched zero or more times.
+$: This anchor specifies the end of the string -->
