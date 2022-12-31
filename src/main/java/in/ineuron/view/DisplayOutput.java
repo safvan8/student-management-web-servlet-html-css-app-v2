@@ -72,14 +72,15 @@ public class DisplayOutput
 		out.println("<h1 style='text-align: center; font-family: Arial, sans-serif; color: #8000ff;'> All Student details </h1>");
 		out.println("<table width='800' border='4' style='border-collapse: collapse; margin: 0 auto;'> "
 				+ "<caption style='caption-side:bottom; font-size: 18px; font-family: Arial, sans-serif; color: #804040;'> Students List</caption>");
-		out.println("<tr bgcolor='#ffd700' style='font-size: 16px; font-family: Arial, sans-serif;'> "
-				+ "<th style='padding: 8px; text-align: left;'>ID</th>"
-				+"<th style='padding: 8px; text-align: left;'>Name</th>"
-				+ "<th style='padding: 8px; text-align: left;'>Age</th>"
-				+ "<th style='padding: 8px; text-align: left;'>Date of Birth</th>"
-				+ "<th style='padding: 8px; text-align: left;'>Gender</th>"
-				+ "<th style='padding: 8px; text-align: left;'>Mobile No.</th>"
-				+ "<th style='padding: 8px; text-align: left;'>City</th>");
+		// specifications of table heading
+		out.println("<tr bgcolor='#ffd700' style='font-size: 20px; font-family: Arial, sans-serif;'> "
+				+ "<th style='padding: 12px; text-align: left;'>ID</th>"
+				+ "<th style='padding: 12px; text-align: left;'>Name</th>"
+				+ "<th style='padding: 12px; text-align: left;'>Age</th>"
+				+ "<th style='padding: 12px; text-align: left;'>Date of Birth</th>"
+				+ "<th style='padding: 12px; text-align: left;'>Gender</th>"
+				+ "<th style='padding: 12px; text-align: left;'>Mobile No.</th>"
+				+ "<th style='padding: 12px; text-align: left;'>City</th>");
 
 		
 		try
@@ -102,7 +103,7 @@ public class DisplayOutput
 				String city = resultSet.getString(7);
 				
 				// Displaying data to user
-				out.println("<tr>"
+				out.println("<tr style='font-size: 18px; font-family: Arial, sans-serif >"
 						+ "<td>"+id+"</td>"
 						+ "<td>"+name+"</td>"
 						+ "<td>"+age+"</td>"
