@@ -9,4 +9,14 @@
     <welcome-file>default.jsp</welcome-file>
     <welcome-file>default.htm</welcome-file>
   </welcome-file-list>
+  
+  <servlet>
+  	<servlet-name>Servletmain</servlet-name>
+  	<servlet-class>in.ineuron.controller.MainServlet</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>Servletmain</servlet-name>
+  <url-pattern>/mainServlet</url-pattern>
+  </servlet-mapping>
 </web-app>

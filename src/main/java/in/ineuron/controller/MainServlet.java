@@ -17,7 +17,7 @@ import javax.servlet.annotation.WebInitParam;
 /**
  * Servlet implementation class MainServlet
  */
-@WebServlet(urlPatterns = { "/mainServlet" }, loadOnStartup = 1, initParams = {
+@WebServlet(loadOnStartup = 1, initParams = {
 		@WebInitParam(name = "jdbcURL", value = "jdbc:mysql://localhost:3306/schooldbo"),
 		@WebInitParam(name = "username", value = "root"), @WebInitParam(name = "passwd", value = "Safvan@123") })
 public class MainServlet extends HttpServlet
