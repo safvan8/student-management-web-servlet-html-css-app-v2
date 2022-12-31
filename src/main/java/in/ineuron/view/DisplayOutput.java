@@ -69,17 +69,18 @@ public class DisplayOutput
 		}
 
 		out.println("<html> <body bgcolor='#F5FFFA'>");
-		out.println("<h1> All Student details </h1>");
-		out.println("<table width='500' border='3'> "
-				+ "<caption style='caption-side:bottom'> Students List</caption>");
-		out.println("<tr bgcolor='yellow'>"
-				+ "<th>ID</th>"
-				+"<th>Name</th>"
-				+ "<th>Age</th>"
-				+ "<th>Date of Birth</th>"
-				+ "<th>Gender</th>"
-				+ "<th>Mobile No.</th>"
-				+ "<th>City</th>");
+		out.println("<h1 style='text-align: center; font-family: Arial, sans-serif; color: #8000ff;'> All Student details </h1>");
+		out.println("<table width='800' border='4' style='border-collapse: collapse; margin: 0 auto;'> "
+				+ "<caption style='caption-side:bottom; font-size: 18px; font-family: Arial, sans-serif; color: #804040;'> Students List</caption>");
+		out.println("<tr bgcolor='#ffd700' style='font-size: 16px; font-family: Arial, sans-serif;'> "
+				+ "<th style='padding: 8px; text-align: left;'>ID</th>"
+				+"<th style='padding: 8px; text-align: left;'>Name</th>"
+				+ "<th style='padding: 8px; text-align: left;'>Age</th>"
+				+ "<th style='padding: 8px; text-align: left;'>Date of Birth</th>"
+				+ "<th style='padding: 8px; text-align: left;'>Gender</th>"
+				+ "<th style='padding: 8px; text-align: left;'>Mobile No.</th>"
+				+ "<th style='padding: 8px; text-align: left;'>City</th>");
+
 		
 		try
 		{
