@@ -1,23 +1,78 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>StudentApp</title>
+  <meta charset="ISO-8859-1">
+  <title>StudentApp</title>
+
+  <style type="text/css">
+   /* Define the width of the div element */
+    div {
+      width: 300px;
+    }
+
+	/* Define the appearance of the a elements (menu items) */
+    a {
+    
+      /* Set the display to block, so the element takes up the full width of its parent */
+      display: block;
+      background-color: #eaf1dd;
+      color: #030;
+      text-decoration: none;
+      font-family: Verdana, Geneva, sans-serif;
+      font-size: 1.5em;
+      padding: 6px 4px;
+      margin: 4px;
+      border-right: 2px solid #999999;
+      border-bottom: 2px solid #999999;
+      border-top-width: 0px;
+      border-left-width: 0px;
+      /* Add a transition effect for the color and border properties */
+      transition: color 0.2s ease-in-out, border 0.2s ease-in-out;
+    }
+
+    a:hover {
+      /* Change the text color and border on hover */
+      color: #030;
+      border: 1px solid #9999ff;
+    }
+
+    /* Add an animation to the h1 and h2 headings */
+    h1, h2 {
+      animation: pulse 3s infinite;
+    }
+
+   /* for animation */ 
+    @keyframes pulse {
+      0% {
+        color: white;
+      }
+      50% {
+        color: red;
+      }
+      100% {
+        color: white;
+      }
+    }
+  </style>
 </head>
+
 <body bgcolor='#FFFFE0'>
-	<h1 align="center" style="color: white; background-color: #006400">
-		STUDENT MANAGEMENT APPLICATION</h1>
-	<h2 align="center" style="color: brown">Welcome to ABC school !</h2>
-	<h3
-		style="color: Navy; font-family: Trebuchet MS; background-color: white;">
-		Kindly select required Operation from the below options
-	</h3>
-	<a href="http://localhost:9999/StudentManagement/pages/insert.html">INSERT new student details<br></a> 
-	
-	<a href="http://localhost:9999/StudentManagement/pages/read.html">Read all student details<br></a>
-	 
-	<a href="http://localhost:9999/StudentManagement/pages/updateWelcome.html">Update existing student details<br></a> 
-	
-	<a href="http://localhost:9999/StudentManagement/pages/delete.html">Delete existing  student details</a> 
+  <h1 align="center" style="color: white; background-color: #006400">
+    STUDENT MANAGEMENT APPLICATION</h1>
+  <h2 align="center" style="color: brown">Welcome to ABC school !</h2>
+
+  <h3
+    style="color: Navy; font-family: Trebuchet MS; background-color: white;">
+    Kindly select required Operation from the below options
+  </h3>
+
+  <a href="http://localhost:9999/StudentManagement/pages/insert.html">INSERT new student details<br></a> 
+  
+  <a href="http://localhost:9999/StudentManagement/pages/read.html">Read all student details<br></a>
+   
+  <a href="http://localhost:9999/StudentManagement/pages/updateWelcome.html">Update existing student details<br></a> 
+  
+  <a href="http://localhost:9999/StudentManagement/pages/delete.html">Delete existing  student details</a> 
+
 </body>
 </html>

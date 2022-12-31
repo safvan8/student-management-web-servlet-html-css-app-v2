@@ -74,7 +74,27 @@ public class UpdateController
 					e.printStackTrace();
 				}
 				
-				displayOutput.showExistingDetailsBeforeUpdate(response, resultSet);
+				// checking resulSet is empty and redirecting back to home if empty, else continue
+				try
+				{
+					if (resultSet.next())
+					{
+						// The ResultSet is not empty
+						displayOutput.showExistingDetailsBeforeUpdate(response, resultSet);
+						System.out.println("result set is not empty-- stduent records found");
+					} else
+					{
+						System.out.println("else");
+						// The ResultSet is  empty
+						System.out.println("result set is empty-- no record found");
+					}
+				}
+				catch (SQLException e)
+				{
+					e.printStackTrace();
+					System.out.println("SQLException while checking resultSet is empty");
+				}
+
 			}
 		}
 	}
