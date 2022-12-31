@@ -3,11 +3,7 @@ package in.ineuron.view;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
 import javax.servlet.http.HttpServletResponse;
-
 import in.ineuron.model.DateFormatter;
 
 public class DisplayOutput

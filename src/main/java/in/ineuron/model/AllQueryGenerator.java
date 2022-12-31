@@ -2,7 +2,6 @@ package in.ineuron.model;
 
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-
 import javax.servlet.http.HttpServletRequest;
 
 public class AllQueryGenerator
@@ -90,7 +89,7 @@ public class AllQueryGenerator
 			{
 				preparedStatement.setString(1, name);
 				preparedStatement.setInt(2, age);
-				preparedStatement.setString(3, dob);
+				preparedStatement.setDate(3, sqlDob);
 				preparedStatement.setString(4, gender);
 				preparedStatement.setString(5, mobileNo);
 				preparedStatement.setString(6, city);
