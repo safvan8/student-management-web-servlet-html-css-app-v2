@@ -1,20 +1,79 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
+  <meta charset="ISO-8859-1">
+  <title>Update Student Details</title>
+   <!--Style element to specify the visual styles for the page -->
+  <style>
+    body {
+      /* Set the background color of the page */
+      background-color: #FFFFE0;
+    }
+    h1 {
+      /* Center the heading text */
+      text-align: center;
+      /* Set the color of the heading text */
+      color: crimson;
+    }
+   
+    
+    form {
+      /* Use flexbox layout to center the form horizontally and vertically on the page */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      /* Set the width of the form to 50% and center it horizontally on the page */
+      width: 50%;
+      margin: 0 auto;
+      /* Add some padding around the form */
+      padding: 1em;
+      /* Add a border around the form */
+      border: 2px solid #ccc;
+      /* Round the corners of the form */
+      border-radius: 4px;
+    }
+    label {
+      /* Display the label as a block element */
+      display: block;
+      /* Align the label text to the left */
+      text-align: left;
+      /* Add some space between the label and the form input */
+      margin-bottom: 0.5em;
+      /* Make the label text bold */
+      font-weight: bold;
+    }
+    input[type="text"] {
+      /* Make the text input take up the full width of its container */
+      width: 100%;
+      /* Add some padding around the text input */
+      padding: 0.5em;
+      /* Add a border around the text input */
+      border: 1px solid #ccc;
+      /* Round the corners of the text input */
+      border-radius: 4px;
+    }
+    input[type="submit"] {
+      /* Set the background color of the submit button */
+      background-color: #4CAF50;
+      /* Set the text color of the submit button */
+      color: white;
+      /* Add some padding around the submit button */
+      padding: 0.5em 1em;
+      /* Remove the border from the submit button */
+      border: none;
+      /* Round the corners of the submit button */
+      border-radius: 4px;
+      /* Change the cursor to a pointer when hovering over the submit button */
+      cursor: pointer;
+    }
+  </style>
 </head>
-<body bgcolor='#FFFFE0'>
-	<h1>Update Existing Student details</h1>
-	<h2 style="color: crimson;">Kindly Enter Student ID to update details</h2>
-	<style>
-		label {
-			display: block;
-			text-align: left;
-		}
-</style>
+<body>
 
-	<form style="color: blue" action="/StudentManagement/mainServlet" method="post">
+  <h1>Modify Student Profile</h1>
+  
+   <!-- Form element to submit the student ID and initiate the update process  -->
+ <form style="color: blue" action="/StudentManagement/mainServlet" method="post">
 		
 		<input type="hidden" name="operation" value="fetchingBeforeUpdate">
 		<label for="id">Enter Student ID: </label> 
@@ -24,6 +83,7 @@
 	</form>
 </body>
 </html>
+
 
 
 <!--

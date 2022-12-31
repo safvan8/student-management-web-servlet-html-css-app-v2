@@ -5,35 +5,66 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta name="description" content="users can delete existing student details using student ID from this webpage">
 		<style>
+			/* Add a gradient background color */
 			body {
-				  background-image: url('J:/NewEclipseCodes/StudentManagement/src/main/webapp/bgimage.jpg');
-				  background-repeat: no-repeat;
-				  background-attachment: fixed;  
-				  background-size: cover;	
+				background: linear-gradient(to bottom, #8000ff, #804040);
 			}
-			h1 {
+			
+			/* Style the headings */
+			h1, h2 {
 				font-family: Times, serif;
-				color: #8000ff;
-				text-align: default;
+				color: white;
+				text-align: center;
 			}
+			
+			/* Style the paragraph text */
 			p {
 				font-family: Arial, sans-serif;
 				font-size: 21px;
-				text-align: default;
-				color: #804040;
+				text-align: center;
+				color: white;
+			}
+			
+			/* Style the form */
+			form {
+				max-width: 400px;
+				margin: 0 auto;
+				padding: 20px;
+				background-color: rgba(255, 255, 255, 0.7);
+				border-radius: 5px;
+				box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+			}
+			
+			/* Style the input fields */
+			input[type="text"], input[type="submit"] {
+				width: 100%;
+				padding: 12px;
+				border: 1px solid #ccc;
+				border-radius: 4px;
+				box-sizing: border-box;
+				margin-top: 6px;
+				margin-bottom: 16px;
+				resize: vertical;
+			}
+			
+			/* Style the submit button */
+			input[type="submit"] {
+				background-color: #8000ff;
+				color: white;
+				font-size: 18px;
 			}
 		</style>
 	</head>
 	<body>
-		<h1>Delete Student Details</h1>
-		<p>Delete Student details by entering below form</p>
+		<h1>Delete Student Record</h1>
+		<h2>Enter Student ID to Delete Record</h2>
 		
-		<form style="color: blue" action="/StudentManagement/mainServlet" method="post">
+		<form action="/StudentManagement/mainServlet" method="post">
 		
-		<input type="hidden" name="operation" value="delete">
-		<label for="age">Enter Student ID: </label> 
-		<input type="text" id="id" name="id" pattern="^(?!0+$)[0-9]{1,10}$" required><br>
-		 <input type="submit" value="Delete Student Record" >
+			<input type="hidden" name="operation" value="delete">
+			<label for="id">Student ID:</label> 
+			<input type="text" id="id" name="id" pattern="^(?!0+$)[0-9]{1,10}$" required><br>
+			<input type="submit" value="Delete Record" >
 
 	</form>
 	
