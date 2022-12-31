@@ -40,4 +40,20 @@ public class DateFormatter
 		
 		return userFriendlyDate;
 	}
+	
+	// to convert sqlDate into string "yyyy-MM-dd" : accepted in html forms
+	public String getHtmlFriendlyStringDate( java.sql.Date sqlDate)
+	{
+		// getting sqlDate and Converting to utilDate , html accepts util date only
+		java.util.Date utilDob = new java.util.Date(sqlDate.getTime());
+
+		// Create a SimpleDateFormat object with the desired date format
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+		// Use the format() method of the SimpleDateFormat object to convert the
+		// java.util.Date object to a string
+		 String  htmlFriendlyStringDate = dateFormat.format(utilDob);
+		 
+		 return htmlFriendlyStringDate;
+	}
 }

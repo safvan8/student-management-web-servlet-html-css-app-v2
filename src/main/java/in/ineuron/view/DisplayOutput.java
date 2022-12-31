@@ -3,6 +3,9 @@ package in.ineuron.view;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import javax.servlet.http.HttpServletResponse;
 
 import in.ineuron.model.DateFormatter;
@@ -12,7 +15,7 @@ public class DisplayOutput
 	//  obj for any Date related Conversions
 	DateFormatter dateFormatter = DateFormatter.getDateFormatter();
 	
-	
+	// to make singleton class
 	private static DisplayOutput displayOutput ;
 	
 	
@@ -142,21 +145,28 @@ public class DisplayOutput
 		Integer id=0;
 		String name = "";
 		Integer age=0;
+		String dob="";
 		String gender="";
 		String mobileno="";
-		
+		String city="";
 		try
 		{
 			// fetching results from resultSet
 			while (resultSet.next())
 			{
 				// getting values from ResultSet one by one
-				 id = resultSet.getInt(1);
-				 name = resultSet.getString(2);
-				 age = resultSet.getInt(3);
-				 gender = resultSet.getString(4);
-				 mobileno = resultSet.getString(5);
+				id = resultSet.getInt(1);
+				name = resultSet.getString(2);
+				age = resultSet.getInt(3);
 				
+				// getting sqlDate	
+				java.sql.Date sqlDob = resultSet.getDate(4);
+				// converting sqlDob to "yyyy-MM-dd" string format : accepted in html forms
+				dob = dateFormatter.getHtmlFriendlyStringDate(sqlDob);
+				
+				gender = resultSet.getString(5);
+				mobileno = resultSet.getString(6);
+
 			}
 		} catch (Exception e)
 		{
@@ -188,7 +198,9 @@ public class DisplayOutput
 
 		"<input type='text' name='name' value="+name +"><br>" +
 
-		"<label for='age'>Age: </label> <input type='text' id='age' name='age' value="+age +" ><br>");
+		"<label for='age'>Age: </label> <input type='text' id='age' name='age' value="+age +" >" +
+		
+		"<label for='dob'>Date of Birth: </label> <input type='date' id='dob' name='dob' value="+dob +" ><br>");
 		
 		out.println("<label for='gender'>Gender: </label> "+ 
 				 
@@ -200,12 +212,15 @@ public class DisplayOutput
 		
 			"</select> <br> <label for='mobileno'>Mobile No:</label>" + 
 			"<input type='text' id='mobileno' name='mobileno' value="+mobileno +"><br> <br>" + 
+			
+			"</select> <br> <label for='city'>City:</label>" + 
+			"<input type='text' id='city' name='city' value="+city +"><br> <br>" + 
+			
 			"<input type='submit' value='Save Changes'>" +
 			
 			"</form>" +
 			"</body>" +
-			"</html>"  );
-				
+			"</html>"  );				
 	}
 	
 	// to display Final result of UPDATE OPERATION
