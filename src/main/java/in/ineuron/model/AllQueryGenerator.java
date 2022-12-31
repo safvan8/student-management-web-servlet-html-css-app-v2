@@ -9,6 +9,9 @@ public class AllQueryGenerator
 {
 	private static AllQueryGenerator allQueryGenerator;
 
+	// Dateformatter object for all database Date related Conversions
+	DateFormatter dateFormatter = DateFormatter.getDateFormatter();
+	
 	private AllQueryGenerator()
 	{
 		// restricting Object creation outside class
@@ -31,7 +34,7 @@ public class AllQueryGenerator
 		if (dbOperation.equals("insert"))
 		{
 			// creating insert query
-			String insertQuery = "INSERT INTO schooldbo.student (name,age,gender,mobileno)  VALUES (?,?,?,?)";
+			String insertQuery = "INSERT INTO schooldbo.student (name,age,dob,gender,mobileno,city)  VALUES (?,?,?,?,?,?)";
 			return insertQuery;
 		} 
 		else if (dbOperation.equals("read"))
@@ -69,19 +72,28 @@ public class AllQueryGenerator
 	// this method is to Set user input values to the preparedSatetement for INSERT Operations
 	public PreparedStatement setUserInputValuesToInsertPreparedStatement(HttpServletRequest request,PreparedStatement preparedStatement)
 	{
+			String dob = request.getParameter("dob");
+			
 			// getting values entered by the user from request Object
 			String name = request.getParameter("name");
 			Integer age = Integer.parseInt(request.getParameter("age"));
+			
+			// getting sqldate from String date
+			java.sql.Date sqlDob = dateFormatter.getSqlDate(dob);
+			
 			String gender = request.getParameter("gender");
 			String mobileNo = request.getParameter("mobileno").trim();
+			String city = request.getParameter("city");
 
 			// setting user input values into preparedStatement object
 			try
 			{
 				preparedStatement.setString(1, name);
 				preparedStatement.setInt(2, age);
-				preparedStatement.setString(3, gender);
-				preparedStatement.setString(4, mobileNo);
+				preparedStatement.setString(3, dob);
+				preparedStatement.setString(4, gender);
+				preparedStatement.setString(5, mobileNo);
+				preparedStatement.setString(6, city);
 			} catch (SQLException e)
 			{
 				e.printStackTrace();
