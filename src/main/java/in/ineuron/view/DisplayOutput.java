@@ -253,16 +253,20 @@ public class DisplayOutput
 		{
 			e.printStackTrace();
 		}
-
-		out.println("<html> <body>");
-
-		// to get successful/failed message
-		if (updateRowCount > 0)
-			out.println("<h1>" + "Student Detais updated successfuly" + "</h1>");
-		else
-			out.println("<h1>" + "Student details update failed" + "</h1>");
-
-		out.println(" </body></html>");
+		
+		// displyig failure/Success message to end user
+		try
+		{
+			// redirecting to successpage if > 0
+			if (updateRowCount > 0)
+				response.sendRedirect("http://localhost:9999/StudentManagement/pages/updated_successfully.html");
+			else
+				//redirecting to failed page
+				response.sendRedirect("http://localhost:9999/StudentManagement/pages/something_wrong.html");
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+		}
 	}
 
 	// to display Final result of DELETE OPERATION	
