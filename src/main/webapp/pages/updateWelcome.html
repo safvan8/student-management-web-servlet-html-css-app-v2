@@ -14,6 +14,7 @@
       text-align: center;
       /* Set the color of the heading text */
       color: crimson;
+      font-size: 40px;
     }
    
     
@@ -76,9 +77,9 @@
  <form style="color: blue" action="/StudentManagement/mainServlet" method="post">
 		
 		<input type="hidden" name="operation" value="fetchingBeforeUpdate">
-		<label for="id">Enter Student ID: </label> 
+		<label for="id" style="font-size: 24px">Enter Student ID: </label> 
 		<input type="text" id="id" name="id" pattern="^(?!0+$)[0-9]{1,10}$" required><br>
-		 <input type="submit" value="View Student Details" >
+		 <input type="submit" value="View Student Details" style="font-size: 19px"  >
 
 	</form>
 </body>

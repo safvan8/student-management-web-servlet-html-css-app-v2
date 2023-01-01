@@ -44,9 +44,10 @@ public class DisplayOutput
 
 		// to get successful/failed message
 		if (insertRowCount > 0)
-			out.println("<h1>" + "Student registartion Successful" + "</h1>");
+			// redirecting to a success message page
+			response.sendRedirect("http://localhost:9999/StudentManagement/pages/insert_success.html");
 		else
-			out.println("<h1>" + "Student registartion failed" + "</h1>");
+			response.sendRedirect("http://localhost:9999/StudentManagement/pages/insert_failed.html");
 
 		out.println(" </body></html>");
 	}
@@ -144,7 +145,7 @@ public class DisplayOutput
 		String name = "";
 		Integer age=0;
 		String dob="";
-		String gender="";
+//		String gender="";
 		String mobileno="";
 		String city="";
 		try
@@ -162,7 +163,7 @@ public class DisplayOutput
 				// converting sqlDob to "yyyy-MM-dd" string format : accepted in html forms
 				dob = dateFormatter.getHtmlFriendlyStringDate(sqlDob);
 				
-				gender = resultSet.getString(5);
+//				gender = resultSet.getString(5);
 				mobileno = resultSet.getString(6);
 
 			}
@@ -267,13 +268,19 @@ public class DisplayOutput
 		}
 		
 		out.println("<html> <body>");
-
-		// to get successful/failed message
-		if (deleteRowCount > 0)
-			out.println("<h1>" + "Student record Deleted successfuly" + "</h1>");
-		else
-			out.println("<h1>" + "Student record deletion failed" + "</h1>");
-
+		try
+		{
+			// to get successful/failed message
+			if (deleteRowCount > 0)
+				// redirecting to a success message page
+				response.sendRedirect("http://localhost:9999/StudentManagement/pages/delete_success.html");
+			else
+				// redirecting to error message page
+				response.sendRedirect("http://localhost:9999/StudentManagement/pages/delete_failed.html");
+		} catch (Exception e)
+		{
+			e.printStackTrace();
+		}
 		out.println(" </body></html>");
 	}
 }

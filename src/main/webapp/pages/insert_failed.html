@@ -1,0 +1,63 @@
+<html>
+<head>
+  <style>
+    /* This is the style for the body element */
+    body {
+      /* Set the background image and make it cover the entire screen */
+      background-image: url('https://example.com/student-registration-bg.jpg');
+      background-size: cover;
+      /* Don't repeat the background image */
+      background-repeat: no-repeat;
+      /* Center the text on the page */
+      text-align: center;
+      /* Set the font family for the text */
+      font-family: Arial, sans-serif;
+      /* Set the color of the text */
+      color: white;
+    }
+
+    /* This is the style for the .message class */
+    .message {
+      /* Display the element as an inline block */
+      display: inline-block;
+      /* Add padding to the element */
+      padding: 20px;
+      /* Add a border radius to the element */
+      border-radius: 10px;
+      /* Set the background color of the element */
+      background-color: rgba(0, 0, 0, 0.5);
+      /* Add an animation to the element */
+      animation: shake 0.5s ease-in-out;
+    }
+
+    /* This is the keyframe animation for the shake effect */
+    @keyframes shake {
+      10%, 90% {
+        transform: translate3d(-1px, 0, 0);
+      }
+      20%, 80% {
+        transform: translate3d(2px, 0, 0);
+      }
+      30%, 50%, 70% {
+        transform: translate3d(-4px, 0, 0);
+      }
+      40%, 60% {
+        transform: translate3d(4px, 0, 0);
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- This is a div element with the .message class applied to it -->
+  <div class="message">
+    <!-- This is an h1 element with the message text -->
+    <h1>Student Registration Failed</h1>
+    <!-- This is a paragraph element with the message text -->
+    <p>Sorry, your student registration has failed. Please try again or contact support for assistance.</p>
+    <!-- This is a link to go back home -->
+    <a href="http://localhost:9999/StudentManagement/pages/welcome.html">Go back home</a><br>
+    <!-- This is a link to send an email to the support team -->
+    <a href="mailto:support@example.com">Contact support team</a>
+  </div>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body {
+      background-image: url('https://images.unsplash.com/photo-1557682224-5b8590cd9ec5?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MXw5MzkxODQxfHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=700&q=60');
+      background-size: cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+    }
+
+    .message {
+      color: white;
+      font-size: 44px;
+      font-weight: bold;
+      text-align: center;
+      animation: fadein 3s;
+    }
+
+    .links {
+      display: flex;
+      justify-content: space-around;
+      width: 300px;
+      margin-top: 20px;
+    }
+
+    a {
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+
+    }
+
+    @keyframes fadein {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="message">
+    Student registration successful!
+  </div>
+  <div class="links">
+    <a href="http://localhost:9999/StudentManagement/pages/welcome.html"><br>Go back home</a>
+    <a href="http://localhost:9999/StudentManagement/pages/insert.html"><br>Register a new student</a>
+  </div>
+</body>
+</html>

@@ -75,14 +75,7 @@ public class UpdateController
 					e.printStackTrace();
 				}
 				
-				try
-				{
-					response.sendRedirect("http://localhost:9999/StudentManagement/pages/record_not_found.html");
-				} catch (IOException e1)
-				{
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
-				}
+				
 				
 				// checking resulSet is empty and redirecting back to home if empty, else continue
 				try
@@ -97,6 +90,15 @@ public class UpdateController
 							System.out.println("else");
 							// The ResultSet is  empty
 							
+							try
+							{
+								response.sendRedirect("http://localhost:9999/StudentManagement/pages/record_not_found.html");
+							} catch (IOException e1)
+							{
+								// TODO Auto-generated catch block
+								e1.printStackTrace();
+							}
+							
 						}
 				}
 				catch (SQLException e)
@@ -108,8 +110,8 @@ public class UpdateController
 					// TODO: handle exception
 				}
 				
-				displayOutput.showExistingDetailsBeforeUpdate(response, resultSet);
-				System.out.println("result set is not empty-- student records found");
+//				displayOutput.showExistingDetailsBeforeUpdate(response, resultSet);
+//				System.out.println("result set is not empty-- student records found");
 
 			}
 		}
