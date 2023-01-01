@@ -63,6 +63,8 @@ public class UpdateController
 			// setting user input values to the ExsistingDetailsUpdateQuery
 			preparedStatementforExistingDetails = allQueryGenerator.setUserInput_ExsistingDetailsUpdateQuery(request,
 					preparedStatementforExistingDetails);
+			
+			System.out.println(preparedStatementforExistingDetails);
 
 			// executing select query
 			if (preparedStatementforExistingDetails != null)
@@ -74,23 +76,9 @@ public class UpdateController
 				{
 					e.printStackTrace();
 				}
-
-				try
-				{
-					if (!resultSet.next())
-					{
-						// result set is empty if resultSet.next() != true
-						response.sendRedirect("http://localhost:9999/StudentManagement/pages/record_not_found.html");
-						System.out.println("resutSet is empty");
-					}
-				} catch (SQLException e)
-				{
-					e.printStackTrace();
-				} catch (IOException e)
-				{
-					e.printStackTrace();
-				}
-
+				
+				
+				
 				displayOutput.showExistingDetailsBeforeUpdate(response, resultSet);
 				System.out.println("result set is not empty-- student records found");
 

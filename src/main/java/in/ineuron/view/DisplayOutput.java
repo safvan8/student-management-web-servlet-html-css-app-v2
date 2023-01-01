@@ -3,6 +3,8 @@ package in.ineuron.view;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSet;
+import java.sql.SQLException;
+
 import javax.servlet.http.HttpServletResponse;
 import in.ineuron.model.DateFormatter;
 
@@ -148,10 +150,19 @@ public class DisplayOutput
 //		String gender="";
 		String mobileno="";
 		String city="";
+		
+		
+		/* if we want to iterate over the ResultSet multiple times, we need to reset the iterator or create a new iterator each time.
+		 */
 		try
 		{
-			// fetching results from resultSet
-			while (resultSet.next())
+			if (!resultSet.next())
+			{
+				// result set is empty if resultSet.next() != true
+				response.sendRedirect("http://localhost:9999/StudentManagement/pages/record_not_found.html");
+				System.out.println("resutSet is empty");
+			}
+			else
 			{
 				// getting values from ResultSet one by one
 				id = resultSet.getInt(1);
@@ -167,10 +178,14 @@ public class DisplayOutput
 				mobileno = resultSet.getString(6);
 
 			}
-		} catch (Exception e)
+		} catch (SQLException e)
+		{
+			e.printStackTrace();
+		} catch (IOException e)
 		{
 			e.printStackTrace();
 		}
+		
 		// displaying existing student details
 		out.println("<html>"
 				+ "<head>"
