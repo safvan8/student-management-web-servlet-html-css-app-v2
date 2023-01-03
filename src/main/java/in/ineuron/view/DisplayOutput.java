@@ -72,9 +72,9 @@ public class DisplayOutput
 		}
 
 		out.println("<html> <body bgcolor='#F5FFFA'>");
-		out.println("<h1> All Student details </h1>");
-		out.println("<table width='500' border='3'> "
-				+ "<caption style='caption-side:bottom'> Students List</caption>");
+		out.println("<h1 style='text-align: center; font-family: Arial, sans-serif; color: #8000ff;'> All Student details </h1>");
+		out.println("<table width='900' border='4' style='border-collapse: collapse; margin: 0 auto;> "
+				+ "<caption style='caption-side:bottom; font-size: 28px; font-family: Arial, sans-serif; color: #804040;'></caption>");
 		out.println("<tr bgcolor='yellow'>"
 				+ "<th>ID</th>"
 				+"<th>Name</th>"
