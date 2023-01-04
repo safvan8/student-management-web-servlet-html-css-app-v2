@@ -175,7 +175,8 @@ public class DisplayOutput
 				
 //				gender = resultSet.getString(5);
 				mobileno = resultSet.getString(6);
-
+				city = resultSet.getString(7);
+				System.out.println(name  + 90888888);
 			}
 		} catch (SQLException e)
 		{
@@ -209,7 +210,7 @@ public class DisplayOutput
 				
 		"<label for='name'>Name of Student: </label>"  +
 
-		"<input type='text' name='name' value="+name +"><br>" +
+		"<input type='text' name='name' value='"+name +"'><br>" +
 
 		"<label for='age'>Age: </label> <input type='text' id='age' name='age' value="+age +" >" +
 		
@@ -233,7 +234,9 @@ public class DisplayOutput
 			
 			"</form>" +
 			"</body>" +
-			"</html>"  );				
+			"</html>"  );		
+				
+				System.out.println(city+"666666666666666666");
 	}
 	
 	// to display Final result of UPDATE OPERATION
