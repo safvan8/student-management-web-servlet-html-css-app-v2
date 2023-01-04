@@ -73,9 +73,9 @@ public class DisplayOutput
 
 		out.println("<html> <body bgcolor='#F5FFFA'>");
 		out.println("<h1 style='text-align: center; font-family: Arial, sans-serif; color: #8000ff;'> All Student details </h1>");
-		out.println("<table width='900' border='4' style='border-collapse: collapse; margin: 0 auto;> "
+		out.println("<table width='800' border='4' style='border-collapse: collapse; margin: 0 auto;> "
 				+ "<caption style='caption-side:bottom; font-size: 28px; font-family: Arial, sans-serif; color: #804040;'></caption>");
-		out.println("<tr bgcolor='yellow'>"
+		out.println("<tr style=font-size:24px bgcolor='yellow'>"
 				+ "<th>ID</th>"
 				+"<th>Name</th>"
 				+ "<th>Age</th>"
@@ -104,7 +104,7 @@ public class DisplayOutput
 				String city = resultSet.getString(7);
 				
 				// Displaying data to user
-				out.println("<tr>"
+				out.println("<tr style=font-size:19px>"
 						+ "<td>"+id+"</td>"
 						+ "<td>"+name+"</td>"
 						+ "<td>"+age+"</td>"
