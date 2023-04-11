@@ -18,6 +18,9 @@ This project is a web-based implementation of a Student Management System that a
 - Supports validation of user inputs
 - Provides search functionality to search for students based on various parameters
 
+## Demo
+Check out the live demo of the application [here](https://drive.google.com/file/d/1TkOQOZIPwC-fXBv5Ov_kYyiLfkFi-98w/view?usp=sharing).
+
 ## Getting Started
 1. Clone the repository to your local machine
 2. Open the project in your IDE
