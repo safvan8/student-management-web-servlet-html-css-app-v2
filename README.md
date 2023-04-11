@@ -21,10 +21,7 @@ This project is a web-based implementation of a Student Management System that a
 ## Getting Started
 1. Clone the repository to your local machine
 2. Open the project in your IDE
-3. Build the project using Maven
-4. Import the database schema from the `database.sql` file
-5. Update the `application.properties` file with your database credentials
-6. Run the application on a Tomcat server
+3. Run the application on a Tomcat server
 
 ## Application Architecture
 The application follows a Model-View-Controller (MVC) architecture with a layered approach for improved code maintainability and readability.
